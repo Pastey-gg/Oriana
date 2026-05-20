@@ -1,6 +1,15 @@
-/* Note: MOBILE FIRST! */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
 
 body {
+    font-family: "Geist", sans-serif;
+    color: var(--primary-color);
     background-color: var(--primary-bg);
 }
 
@@ -9,8 +18,12 @@ main {
     flex-direction: column;
 }
 
-@media (min-width: 1024px) {
-    main {
-        flex-direction: row;
-    }
+.header {
+    font-family: "Inter", sans-serif;
+}
+
+.logo>svg {
+    height: 2em;
+    width: 2em;
+    color: var(--accent-color);
 }

@@ -1,3 +1,15 @@
+@font-face {
+    font-family: "Geist";
+    src: url("/Geist.ttf") format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("/Inter.ttf") format("truetype");
+    font-display: swap;
+}
+
 :root {
 
 }
@@ -7,5 +19,5 @@
     --primary-bg: #13141C;
     --secondary-bg: #1A1D27;
     --secondary-color: #94A3B8;
-    --accent-color: #2979FF;
+    --accent-color: #DCA1A1;
 }
