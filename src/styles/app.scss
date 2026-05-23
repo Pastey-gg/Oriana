@@ -20,11 +20,33 @@ main {
     width: 100vw;
 }
 
-.inner {
+#app {
+    overflow: clip
+}
+
+.wrapper {
     display: flex;
+    flex-direction: column;
     margin: 2em 0 2em 0;
     align-self: center;
     width: 95%;
+    flex: 1;
+    gap: 2em;
+}
+
+.wrapperWith {
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 2em 0 2em 0;
+    align-self: center;
+    width: 95%;
+    flex: 1;
+    gap: 2em;
+}
+
+
+.inner {
+    display: flex;
     flex: 1;
 }
 
@@ -38,12 +60,125 @@ main {
     color: var(--accent-color);
 }
 
+#metaInfo {
+    position: sticky;
+    height: 90vh;
+    max-height: 100%;
+    top: 4.2em;
+}
+
+input {
+    background-color: var(--field-bg);
+    outline: none;
+    border: 1px solid var(--secondary-color--10);
+    border-radius: .2em;
+    padding: .6em;
+    color: var(--secondary-color);
+}
+
+input:focus {
+    outline: 1px solid var(--secondary-color--30);
+}
+
+.blue {
+    color: #888edb;
+}
+
+/* BUTTON */
+.saveButton {
+    background-color: var(--success);
+    padding: 1em;
+    border-radius: 0.4em;
+    text-align: center;
+    font-weight: 700;
+    color: #FFFFFF;
+    font-family: "Inter", sans-serif;
+    user-select: none;
+    margin-top: auto;
+}
+
+.saveButton:hover {
+    cursor: pointer;
+    background-color: var(--success--2);
+}
+
+.saveButton:active {
+    transform: scale(.99);
+}
+
+/* SELECT BAR */
+.customSelect {
+  &.solid-select-container {
+    pointer-events: auto;
+    color: var(--secondary-color);
+    background-color: var(--field-bg);
+    height: 2.6em;
+  }
+  .solid-select-control {
+    pointer-events: none;
+    height: 2.6em;
+    align-items: center;
+    border: none;
+    &:focus-within {
+      outline: none;
+    }
+  }
+  .solid-select-input {
+    outline: none;
+  }
+  .solid-select-placeholder {
+    color: var(--secondary-color);
+  }
+  .solid-select-option {
+    &:hover {
+      background-color: var(--secondary-bg);
+      color: var(--primary-color);
+      border-radius: 0.3em;
+    }
+    &[data-focused="true"] {
+      background-color: var(--secondary-bg);
+      color: var(--primary-color);
+      border-radius: 0.3em;
+    }
+  }
+}
+
+.selectContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: var(--secondary-color);
+    background-color: var(--field-bg);
+    border: 1px solid var(--secondary-color--10);
+    border-radius: 0.3em;
+    padding-right: .3em;
+    pointer-events: auto
+}
+/* --- END SELECT BAR --- */
+
 @media (min-width: 992px) {
-  .inner {
+  .wrapper {
+    flex-direction: row;
+  }
+
+  #metaInfo {
+    min-width: 18%;
+  }
+
+}
+
+@media (min-width: 1536px) {
+  .wrapper {
     width: 85%;
   }
 }
 
+/* PRISM EDITOR STUFF */
+.pce-wrapper {
+    margin: .8em 0!important;
+}
+
 .prism-code-editor {
+    margin-top: .4em;
     background-color: var(--editor-bg)!important;
 }

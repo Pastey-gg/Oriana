@@ -1,4 +1,5 @@
 import { clientOnly } from "@solidjs/start";
+import MetaInfo from "~/components/MetaInfo";
 import TopBar from "../components/Topbar";
 
 export default function Home() {
@@ -6,8 +7,11 @@ export default function Home() {
   return (
     <main>
       <TopBar></TopBar>
-      <div class="inner">
-        <IEditor />
+      <div class="wrapper">
+        <div class="inner">
+          <IEditor />
+        </div>
+        <MetaInfo />
       </div>
     </main>
   );

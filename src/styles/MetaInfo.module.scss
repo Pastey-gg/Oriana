@@ -1,0 +1,20 @@
+.part {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    font-size: 0.8em;
+    color: var(--secondary-color);
+    font-weight: 700;
+    user-select: none;
+}
+
+
+.smallText {
+    font-size: 0.8em;
+    color: var(--secondary-color--60);
+}
+
+.metaInner {
+    height: 100%;
+    max-height: 100%;
+}

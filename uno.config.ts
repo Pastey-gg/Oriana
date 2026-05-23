@@ -13,5 +13,10 @@ export default defineConfig({
     ["flexc", { display: "flex", "flex-direction": "column" }],
     [/^ac-(start|end|center)$/, ([_, align]) => ({ "align-content": `${align}` })],
     [/^ai-(start|end|center)$/, ([_, align]) => ({ "align-items": `${align}` })],
+    [/^as-(start|end|center)$/, ([_, align]) => ({ "align-self": `${align}` })],
+    ["mta", { "margin-left": "auto" }],
+    ["mra", { "margin-left": "auto" }],
+    ["mba", { "margin-left": "auto" }],
+    ["mla", { "margin-left": "auto" }],
   ],
 });

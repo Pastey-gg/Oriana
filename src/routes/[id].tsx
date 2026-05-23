@@ -1,6 +1,7 @@
 import { type Params, useLocation, useNavigate, useParams } from "@solidjs/router";
 import { clientOnly } from "@solidjs/start";
 import { createResource } from "solid-js";
+import MetaInfoWith from "~/components/MetaInfoWith";
 import TopBar from "../components/Topbar";
 
 interface ParamsT extends Params {
@@ -42,6 +43,7 @@ export default function ViewPaste() {
       <div class="inner">
         <IEditor />
       </div>
+      <MetaInfoWith />
     </main>
   );
 }
