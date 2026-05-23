@@ -1,0 +1,19 @@
+.topBar {
+    display: flex;
+    padding: .6em;
+    background-color: var(--secondary-bg);
+    gap: 1em;
+}
+
+.topBar > input {
+    background-color: var(--primary-bg);
+    outline: none;
+    border: 1px solid var(--secondary-color--10);
+    border-radius: .2em;
+    padding: .6em;
+    color: var(--primary-color);
+}
+
+.topBar > input:focus {
+    outline: 1px solid var(--secondary-color--30);
+}

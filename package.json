@@ -9,9 +9,11 @@
   },
   "dependencies": {
     "@solid-primitives/active-element": "^2.1.5",
-    "@solidjs/router": "^0.15.3",
+    "@solid-primitives/lifecycle": "^0.1.2",
+    "@solidjs/router": "^0.16.1",
     "@solidjs/start": "2.0.0-alpha.2",
-    "@solidjs/vite-plugin-nitro-2": "^0.1.0",
+    "@solidjs/vite-plugin-nitro-2": "^0.2.0",
+    "@thisbeyond/solid-select": "^0.16.0",
     "@unocss/preset-wind4": "^66.5.2",
     "@unocss/reset": "^66.5.2",
     "solid-js": "^1.9.9",
@@ -24,6 +26,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.15",
+    "@types/node": "^25.9.1",
     "sass": "^1.99.0"
   }
 }

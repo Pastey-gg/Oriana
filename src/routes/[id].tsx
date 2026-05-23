@@ -1,22 +1,47 @@
-import { Params, useParams } from "@solidjs/router";
-import { Resource } from "solid-js";
-import { createResource } from "solid-js/types/server/rendering.js";
+import { type Params, useLocation, useNavigate, useParams } from "@solidjs/router";
+import { clientOnly } from "@solidjs/start";
+import { createResource } from "solid-js";
+import TopBar from "../components/Topbar";
 
 interface ParamsT extends Params {
   id: string;
 }
 
-async function fetchPaste(id: string): Promise<PasteResponse> {
-  let resp: Response;
-
-  try {
-    resp = await fetch("");
-  } catch (error) {}
-}
-
-export default function Home() {
+export default function ViewPaste() {
+  const IEditor = clientOnly(() => import("../components/Editor"));
+  const location = useLocation();
+  const navigate = useNavigate();
   const params: ParamsT = useParams();
-  const [paste] = createResource<PasteResponse, string>(() => params.id, fetchPaste);
 
-  return <main></main>;
+  const fetchPaste = async () => {
+    // TODO: Error stuffs...
+    let resp: Response;
+
+    try {
+      resp = await fetch(`${import.meta.env.VITE_API_HOST}/pastes/${params.id}`);
+      if (resp.status === 200) {
+        return await resp.json();
+      }
+    } catch (error) {
+      console.error(error);
+      return navigate("/error");
+    }
+
+    if (resp.status === 404) {
+      return navigate("/404");
+    }
+
+    return navigate("/error");
+  };
+
+  const [pasteResp] = createResource<PasteResponse, Promise<string>>(async () => location.pathname, fetchPaste);
+
+  return (
+    <main>
+      <TopBar></TopBar>
+      <div class="inner">
+        <IEditor />
+      </div>
+    </main>
+  );
 }
