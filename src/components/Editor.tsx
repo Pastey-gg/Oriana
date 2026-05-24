@@ -48,7 +48,7 @@ import "solid-prism-editor/themes/github-dark.css";
 import "solid-prism-editor/search.css";
 import "solid-prism-editor/copy-button.css";
 
-import { createMemo, Match, type ParentComponent, Switch } from "solid-js";
+import { createMemo, Match, type Component, Switch } from "solid-js";
 import { Editor } from "solid-prism-editor";
 import { copyButton } from "solid-prism-editor/copy-button";
 import { indentGuides } from "solid-prism-editor/guides";
@@ -58,9 +58,10 @@ import MetaBarWith from "./MetaBarWith";
 
 interface Props {
   paste?: PasteResponse;
+  fileCount?: number;
 }
 
-const IEditor: ParentComponent<Props> = (props) => {
+const IEditor: Component<Props> = (props) => {
   // TODO: Settings...
   const extensions = createMemo(() => [copyButton(), indentGuides()]);
 
@@ -72,7 +73,7 @@ const IEditor: ParentComponent<Props> = (props) => {
           <MetaBarWith paste={props.paste!} />
         </Match>
         <Match when={!props.paste}>
-          <MetaBar></MetaBar>
+          <MetaBar fileCount={props.fileCount} />
         </Match>
       </Switch>
       <Editor extensions={extensions()} />

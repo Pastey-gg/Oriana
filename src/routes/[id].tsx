@@ -41,7 +41,7 @@ export default function ViewPaste() {
     <main>
       <TopBar></TopBar>
       <div class="inner">
-        <IEditor />
+        <IEditor paste={pasteResp()} />
       </div>
       <MetaInfoWith />
     </main>

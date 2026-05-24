@@ -1,10 +1,14 @@
 import { Select } from "@thisbeyond/solid-select";
-import type { ParentComponent } from "solid-js";
+import type { Component } from "solid-js";
 import styles from "../styles/MetaInfo.module.scss";
 import "@thisbeyond/solid-select/style.css";
 import ToggleSwitch from "./Toggle";
 
-const MetaInfo: ParentComponent = () => {
+interface Props {
+  onAddFile?: () => void;
+}
+
+const MetaInfo: Component<Props> = (props) => {
   return (
     <div class="flexc" id="metaInfo">
       <div class={`${styles.metaInner} flexc gap-1`}>
@@ -28,6 +32,7 @@ const MetaInfo: ParentComponent = () => {
           <ToggleSwitch checked={false} />
         </span>
         <div class="saveButton">Save</div>
+        <div class={styles.addFileButton} onClick={props.onAddFile}>+ Add file</div>
       </div>
     </div>
   );

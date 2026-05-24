@@ -16,6 +16,36 @@
     border: 1px solid var(--success--40);
 }
 
+.fileStatic {
+    display: flex;
+    align-items: center;
+    padding: 0.6em;
+    border-radius: 0.2em;
+    color: var(--secondary-color);
+    user-select: none;
+}
+
+.fileSelectorWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    :global(.solid-select-control) {
+        padding-right: 1.8em;
+    }
+}
+
+.fileSelectorChevron {
+    position: absolute;
+    right: 0.5em;
+    pointer-events: none;
+    color: var(--secondary-color);
+    font-size: 0.7em;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
 .langSelect {
     font-size: 0.8em;
     font-weight: 600;
