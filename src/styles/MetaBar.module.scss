@@ -9,7 +9,15 @@
     background-color: var(--primary-bg);
 }
 
+.fileSelect {
+    font-size: 0.8em;
+    font-weight: 600;
+    background-color: var(--editor-bg)!important;
+    border: 1px solid var(--success--40);
+}
+
 .langSelect {
     font-size: 0.8em;
     font-weight: 600;
+    background-color: var(--editor-bg)!important;
 }
