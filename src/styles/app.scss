@@ -189,4 +189,45 @@ input:focus {
     margin-top: .4em;
     background-color: var(--editor-bg)!important;
 }
+
+[data-theme="light"] .prism-code-editor,
+[data-theme="light"] .prism-code-editor textarea,
+[data-theme="light"] .prism-code-editor pre,
+[data-theme="light"] .prism-code-editor code,
+[data-theme="light"] .prism-code-editor .token {
+  color: var(--primary-color)!important;
+}
+
+[data-theme="light"] .prism-code-editor {
+  --pce-line-number: var(--secondary-color--60)!important;
+  --pce-bg-highlight: rgba(15, 23, 42, .08)!important;
+  --pce-widget-border: rgba(31, 41, 55, .22)!important;
+  --pce-widget-bg: #ffffff!important;
+  --pce-widget-color-options: #334155!important;
+}
+
+[data-theme="light"] .prism-code-editor .active-line {
+  --pce-line-number: var(--primary-color)!important;
+}
+
+[data-theme="light"] .prism-code-editor.show-line-numbers .pce-line:before {
+  color: var(--pce-line-number)!important;
+}
+
+[data-theme="light"] .prism-code-editor .pce-copy:before {
+  background: rgba(148, 163, 184, .28)!important;
+  box-shadow: inset 0 0 0 1px rgba(71, 85, 105, .45)!important;
+}
+
+[data-theme="light"] .prism-code-editor .pce-copy:after {
+  background: rgba(15, 23, 42, .85)!important;
+  color: #F8FAFC!important;
+}
+
+[data-theme="light"] .prism-code-editor .token.comment,
+[data-theme="light"] .prism-code-editor .token.prolog,
+[data-theme="light"] .prism-code-editor .token.doctype,
+[data-theme="light"] .prism-code-editor .token.cdata {
+  color: var(--secondary-color--80)!important;
+}
 /* --- END PRISM EDITOR STUFF --- */

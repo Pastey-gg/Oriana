@@ -25,6 +25,14 @@
     --effect-transition: all 0.2s ease-in-out;
 }
 
+[data-theme="light"] .switch {
+    --switch-bg: #CBD5E1;
+    --switch-checked-bg: #FB7185;
+    --circle-bg: #FFFFFF;
+    --icon-cross-color: #475569;
+    --icon-checkmark-color: #9F1239;
+}
+
 .switch input {
     display: none;
 }
