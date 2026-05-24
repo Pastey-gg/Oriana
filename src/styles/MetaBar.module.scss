@@ -51,3 +51,14 @@
     font-weight: 600;
     background-color: var(--editor-bg)!important;
 }
+
+.langSelectWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+
+    :global(.solid-select-control) {
+        padding-right: 1.8em;
+    }
+}

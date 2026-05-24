@@ -1,6 +1,7 @@
 import { Select } from "@thisbeyond/solid-select";
 import type { Component } from "solid-js";
 import FileSelector from "./FileSelector";
+import ChevronSVG from "~/svgs/Chevron";
 import styles from "../styles/MetaBar.module.scss";
 
 interface Props {
@@ -12,7 +13,10 @@ const MetaBarWith: Component<Props> = (props) => {
     <div class={styles.topBar}>
       <FileSelector fileCount={props.paste.files.length} />
       <input placeholder="Optional filename..." value={props.paste.files[0]?.name ?? ""}></input>
-      <Select class={`${styles.langSelect} customSelect mla`} placeholder="Syntax..." options={[1, 2, 3]} />
+      <div class={styles.langSelectWrapper}>
+        <Select class={`${styles.langSelect} customSelect`} placeholder="Syntax..." options={[1, 2, 3]} />
+        <span class={styles.fileSelectorChevron}><ChevronSVG /></span>
+      </div>
     </div>
   );
 };
