@@ -48,7 +48,7 @@ import "solid-prism-editor/themes/github-dark.css";
 import "solid-prism-editor/search.css";
 import "solid-prism-editor/copy-button.css";
 
-import { type Component, createMemo, createSignal, Match, Switch } from "solid-js";
+import { type Component, createMemo, createSignal, Match, Show, Switch, untrack } from "solid-js";
 import { metaStore, pasteStore, setPasteStore } from "~/stores";
 import { Editor, type PrismEditor } from "solid-prism-editor";
 import { copyButton } from "solid-prism-editor/copy-button";
@@ -67,7 +67,10 @@ const IEditor: Component<Props> = (props) => {
   const extensions = createMemo(() => [copyButton(), indentGuides()]);
   const [viewFile, setViewFile] = createSignal(0);
   const draftFile = createMemo(() => pasteStore.files[metaStore.currentFile]);
+  const draftEditorKey = createMemo(() => `draft-file-${metaStore.currentFile}`);
   const viewedFile = createMemo(() => props.paste?.files[viewFile()]);
+
+  const draftInitialValue = () => untrack(() => pasteStore.files[metaStore.currentFile]?.content ?? "");
 
   const setCurrentFileContent = (content: string) => {
     setPasteStore("files", metaStore.currentFile, "content", content);
@@ -100,13 +103,15 @@ const IEditor: Component<Props> = (props) => {
           />
         </Match>
         <Match when={!props.paste}>
-          <Editor
-            extensions={extensions()}
-            language={draftFile()?.language ?? "text"}
-            value={draftFile()?.content ?? ""}
-            onUpdate={setCurrentFileContent}
-            onMount={(editor) => setEditorFieldAttrs(editor, "paste-content-editor", "pasteContent")}
-          />
+          <Show keyed when={draftEditorKey()}>
+            <Editor
+              extensions={extensions()}
+              language={draftFile()?.language ?? "text"}
+              value={draftInitialValue()}
+              onUpdate={setCurrentFileContent}
+              onMount={(editor) => setEditorFieldAttrs(editor, "paste-content-editor", "pasteContent")}
+            />
+          </Show>
         </Match>
       </Switch>
     </div>
