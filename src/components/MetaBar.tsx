@@ -18,12 +18,14 @@ const MetaBar: Component = () => {
     <div class={styles.topBar}>
       <FileSelector fileCount={pasteStore.files.length} currentFile={metaStore.currentFile} onFileChange={setCurrentFile} />
       <input
+        id="paste-file-name"
+        name="fileName"
         placeholder="Optional filename..."
         value={pasteStore.files[metaStore.currentFile]?.name ?? ""}
         onInput={(event) => setCurrentFileName(event.currentTarget.value)}
       ></input>
       <div class={styles.langSelectWrapper}>
-        <Select class={`${styles.langSelect} customSelect`} placeholder="Syntax..." options={[1, 2, 3]} />
+        <Select id="paste-file-language" name="fileLanguage" class={`${styles.langSelect} customSelect`} placeholder="Syntax..." options={[1, 2, 3]} />
         <span class={styles.fileSelectorChevron}>
           <ChevronSVG />
         </span>

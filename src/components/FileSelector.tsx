@@ -45,6 +45,8 @@ const FileSelector: Component<Props> = (props) => {
       <div class={styles.fileSelectorWrapper}>
         <Show keyed when={selectKey()}>
           <Select
+            id="paste-file-selector"
+            name="paste-file"
             class={`${styles.fileSelect} customSelect`}
             initialValue={selectedOption()}
             placeholder={`File ${props.currentFile + 1} of ${props.fileCount}`}

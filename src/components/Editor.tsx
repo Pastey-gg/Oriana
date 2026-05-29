@@ -50,7 +50,7 @@ import "solid-prism-editor/copy-button.css";
 
 import { type Component, createMemo, createSignal, Match, Switch } from "solid-js";
 import { metaStore, pasteStore, setPasteStore } from "~/stores";
-import { Editor } from "solid-prism-editor";
+import { Editor, type PrismEditor } from "solid-prism-editor";
 import { copyButton } from "solid-prism-editor/copy-button";
 import { indentGuides } from "solid-prism-editor/guides";
 import type { PasteResponse } from "~/types/pastes";
@@ -73,6 +73,11 @@ const IEditor: Component<Props> = (props) => {
     setPasteStore("files", metaStore.currentFile, "content", content);
   };
 
+  const setEditorFieldAttrs = (editor: PrismEditor, id: string, name: string) => {
+    editor.textarea.id = id;
+    editor.textarea.name = name;
+  };
+
   return (
     <div class={styles.container}>
       <Switch>
@@ -91,6 +96,7 @@ const IEditor: Component<Props> = (props) => {
             language={viewedFile()?.language ?? "text"}
             readOnly
             value={viewedFile()?.content ?? ""}
+            onMount={(editor) => setEditorFieldAttrs(editor, "paste-content-viewer", "pasteContent")}
           />
         </Match>
         <Match when={!props.paste}>
@@ -99,6 +105,7 @@ const IEditor: Component<Props> = (props) => {
             language={draftFile()?.language ?? "text"}
             value={draftFile()?.content ?? ""}
             onUpdate={setCurrentFileContent}
+            onMount={(editor) => setEditorFieldAttrs(editor, "paste-content-editor", "pasteContent")}
           />
         </Match>
       </Switch>

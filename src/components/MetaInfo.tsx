@@ -21,7 +21,7 @@ const MetaInfo: Component<Props> = (props) => {
         </label>
         <span class={`${styles.part} header`}>
           Expiry
-          <Select class="customSelect" options={[1, 2, 3, 4]} />
+          <Select id="paste-expiry" name="expiry" class="customSelect" options={[1, 2, 3, 4]} />
         </span>
         <label class={`${styles.part} header`}>
           View Count
