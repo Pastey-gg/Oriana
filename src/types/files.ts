@@ -1,4 +1,4 @@
-type PasteFileResponse = {
+export type PasteFileResponse = {
   id: string;
   character_count: number;
   line_count: number;

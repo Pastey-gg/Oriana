@@ -1,4 +1,6 @@
-type PasteResponse = {
+import type { PasteFileResponse } from "./files";
+
+export type PasteResponse = {
   id: string;
   created_at: string;
   views: number;

@@ -12,7 +12,7 @@ const FileSelector: Component = () => {
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   const format = (value: any, type: "option" | "value") => {
     if (type === "option") {
-      const name = value[0].name;
+      const {name} = value[0];
       return `${name} of ${pasteStore.files.length}`;
     }
 

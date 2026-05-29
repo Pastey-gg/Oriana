@@ -2,6 +2,7 @@ import { type Params, useLocation, useNavigate, useParams } from "@solidjs/route
 import { clientOnly } from "@solidjs/start";
 import { createResource } from "solid-js";
 import MetaInfoWith from "~/components/MetaInfoWith";
+import type { PasteResponse } from "~/types/pastes";
 import TopBar from "../components/Topbar";
 
 interface ParamsT extends Params {

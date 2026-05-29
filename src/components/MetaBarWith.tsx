@@ -1,6 +1,7 @@
 import { Select } from "@thisbeyond/solid-select";
 import type { Component } from "solid-js";
 import ChevronSVG from "~/svgs/Chevron";
+import type { PasteResponse } from "~/types/pastes";
 import styles from "../styles/MetaBar.module.scss";
 import FileSelector from "./FileSelector";
 

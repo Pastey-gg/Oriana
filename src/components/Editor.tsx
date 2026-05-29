@@ -52,6 +52,7 @@ import { type Component, createMemo, Match, Switch } from "solid-js";
 import { Editor } from "solid-prism-editor";
 import { copyButton } from "solid-prism-editor/copy-button";
 import { indentGuides } from "solid-prism-editor/guides";
+import type { PasteResponse } from "~/types/pastes";
 import styles from "../styles/Editor.module.scss";
 import MetaBar from "./MetaBar";
 import MetaBarWith from "./MetaBarWith";
