@@ -6,3 +6,9 @@ type PasteFileResponse = {
   language?: string;
   content: string;
 };
+
+export interface PasteFileCreate {
+  name?: string;
+  language?: string;
+  content: string;
+}
