@@ -3,6 +3,7 @@ import type { Component } from "solid-js";
 import styles from "../styles/MetaInfo.module.scss";
 import "@thisbeyond/solid-select/style.css";
 import ToggleSwitch from "./Toggle";
+import FaRegularCircleQuestion from "~/svgs/Question";
 
 interface Props {
   onAddFile?: () => void;
@@ -24,11 +25,17 @@ const MetaInfo: Component<Props> = (props) => {
           <Select id="paste-expiry" name="expiry" class="customSelect" options={[1, 2, 3, 4]} />
         </span>
         <label class={`${styles.part} header`}>
-          View Count
-          <input type="number" name="views" min="1" max="100" step="1" value="0"></input>
+          Allowed Views
+          <small class={`${styles.smallText}`}>
+            <FaRegularCircleQuestion /> Only allow up to N amount of views
+          </small>
+          <input type="number" name="views" min="1" max="1000" step="1" value="0"></input>
         </label>
         <span class={`${styles.part} header`}>
           Disable Safety scanning?
+          <small class={`${styles.smallText}`}>
+            <FaRegularCircleQuestion /> Disables scanning the paste for tokens.
+          </small>
           <ToggleSwitch checked={false} />
         </span>
         <div class="saveButton">Save</div>

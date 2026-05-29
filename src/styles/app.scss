@@ -24,6 +24,12 @@ a {
   color: var(--secondary-color--80);
 }
 
+hr {
+  border: none;
+  border-bottom: 1px solid var(--secondary-color--30);
+  width: 100%;
+}
+
 #app {
     overflow: clip
 }
@@ -52,6 +58,7 @@ a {
 .inner {
     display: flex;
     flex: 1;
+    min-height: 55vh;
 }
 
 .header {
@@ -179,7 +186,7 @@ input:focus {
 
   #metaInfo {
     min-width: 18%;
-        height: 90vh;
+    height: 90vh;
     max-height: 100%;
     top: 4.2em;
   }
@@ -189,6 +196,10 @@ input:focus {
 @media (min-width: 1536px) {
   .wrapper {
     width: 90%;
+  }
+
+  .inner {
+    min-height: 35vh;
   }
 }
 /* --- END SCREEN COMPAT --- */
