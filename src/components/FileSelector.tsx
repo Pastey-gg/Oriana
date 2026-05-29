@@ -1,32 +1,37 @@
 import { Select } from "@thisbeyond/solid-select";
 import type { Component } from "solid-js";
 import { Show } from "solid-js";
+import { pasteStore } from "~/stores";
 import ChevronSVG from "~/svgs/Chevron";
 import styles from "../styles/MetaBar.module.scss";
 
-interface Props {
-  fileCount: number;
-}
 
-const FileSelector: Component<Props> = (props) => {
-  const fileOptions = () => Array.from({ length: props.fileCount }, (_, i) => `File ${i + 1}`);
+const FileSelector: Component = () => {
+  const fileOptions = () => Array.from({ length: pasteStore.files.length }, (_, i) => [{name: `File ${i + 1}`}, {key: i}]);
 
-  const format = (value: string, type: "option" | "value") => {
-    if (type === "value") {
-      const index = fileOptions().indexOf(value);
-      return `File ${index + 1} of ${props.fileCount}`;
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  const format = (value: any, type: "option" | "value") => {
+    if (type === "option") {
+      const name = value[0].name;
+      return `${name} of ${pasteStore.files.length}`;
     }
+
     return value;
   };
 
+  const setFile = (e) => {
+    //
+  }
+
   return (
-    <Show when={props.fileCount > 1} fallback={<div class={`${styles.fileSelect} ${styles.fileStatic}`}>File 1 of 1</div>}>
+    <Show when={pasteStore.files.length > 1} fallback={<div class={`${styles.fileSelect} ${styles.fileStatic}`}>File 1 of 1</div>}>
       <div class={styles.fileSelectorWrapper}>
         <Select
           class={`${styles.fileSelect} customSelect`}
-          placeholder={`File 1 of ${props.fileCount}`}
+          placeholder={`File 1 of ${pasteStore.files.length}`}
           options={fileOptions()}
           format={format}
+          onChange={setFile}
         />
         <span class={styles.fileSelectorChevron}>
           <ChevronSVG />

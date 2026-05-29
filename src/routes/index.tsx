@@ -1,19 +1,18 @@
 import { clientOnly } from "@solidjs/start";
-import { createSignal } from "solid-js";
 import MetaInfo from "~/components/MetaInfo";
+import { pasteStore, setPasteStore } from "~/stores";
 import type { PasteFileCreate } from "~/types/files";
 import TopBar from "../components/Topbar";
 
 export default function Home() {
   const IEditor = clientOnly(() => import("../components/Editor"));
-  const [files, setFiles] = createSignal<Array<PasteFileCreate>>([]);
 
   const addFile = () => {
-    if (files.length >= 5) {
+    if (pasteStore.files.length >= 5) {
       return;
     }
 
-    setFiles((prev) => [{} as PasteFileCreate, ...prev]);
+    setPasteStore("files", (currentFiles) => [...currentFiles, {} as PasteFileCreate]);
   };
 
   return (
@@ -21,7 +20,8 @@ export default function Home() {
       <TopBar></TopBar>
       <div class="wrapper">
         <div class="inner">
-          <IEditor fileCount={files().length} />
+
+          <IEditor />
         </div>
         <MetaInfo onAddFile={addFile} />
       </div>

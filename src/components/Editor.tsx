@@ -58,7 +58,6 @@ import MetaBarWith from "./MetaBarWith";
 
 interface Props {
   paste?: PasteResponse;
-  fileCount?: number;
 }
 
 const IEditor: Component<Props> = (props) => {
@@ -73,7 +72,7 @@ const IEditor: Component<Props> = (props) => {
           <MetaBarWith paste={props.paste!} />
         </Match>
         <Match when={!props.paste}>
-          <MetaBar fileCount={props.fileCount} />
+          <MetaBar />
         </Match>
       </Switch>
       <Editor extensions={extensions()} />
