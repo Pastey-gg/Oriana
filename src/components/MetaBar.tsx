@@ -25,7 +25,13 @@ const MetaBar: Component = () => {
         onInput={(event) => setCurrentFileName(event.currentTarget.value)}
       ></input>
       <div class={styles.langSelectWrapper}>
-        <Select id="paste-file-language" name="fileLanguage" class={`${styles.langSelect} customSelect`} placeholder="Syntax..." options={[1, 2, 3]} />
+        <Select
+          id="paste-file-language"
+          name="fileLanguage"
+          class={`${styles.langSelect} customSelect`}
+          placeholder="Syntax..."
+          options={[1, 2, 3]}
+        />
         <span class={styles.fileSelectorChevron}>
           <ChevronSVG />
         </span>

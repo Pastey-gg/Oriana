@@ -17,9 +17,21 @@ const MetaBarWith: Component<Props> = (props) => {
   return (
     <div class={styles.topBar}>
       <FileSelector fileCount={props.paste.files.length} currentFile={props.currentFile} onFileChange={props.onFileChange} />
-      <input id="paste-file-name-view" name="fileName" placeholder="Optional filename..." value={file()?.name ?? ""} readOnly></input>
+      <input
+        id="paste-file-name-view"
+        name="fileName"
+        placeholder="Optional filename..."
+        value={file()?.name ?? ""}
+        readOnly
+      ></input>
       <div class={styles.langSelectWrapper}>
-        <Select id="paste-file-language-view" name="fileLanguage" class={`${styles.langSelect} customSelect`} placeholder={file()?.language ?? "Syntax..."} options={[1, 2, 3]} />
+        <Select
+          id="paste-file-language-view"
+          name="fileLanguage"
+          class={`${styles.langSelect} customSelect`}
+          placeholder={file()?.language ?? "Syntax..."}
+          options={[1, 2, 3]}
+        />
         <span class={styles.fileSelectorChevron}>
           <ChevronSVG />
         </span>

@@ -1,4 +1,5 @@
 import { clientOnly } from "@solidjs/start";
+import FooterBar from "~/components/Footer";
 import MetaInfo from "~/components/MetaInfo";
 import { pasteStore, setMetaStore, setPasteStore } from "~/stores";
 import type { PasteFileCreate } from "~/types/files";
@@ -23,11 +24,11 @@ export default function Home() {
       <TopBar></TopBar>
       <div class="wrapper">
         <div class="inner">
-
           <IEditor />
         </div>
         <MetaInfo onAddFile={addFile} />
       </div>
+      <FooterBar />
     </main>
   );
 }

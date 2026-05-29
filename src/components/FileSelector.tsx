@@ -16,7 +16,9 @@ interface Props {
 }
 
 const FileSelector: Component<Props> = (props) => {
-  const fileOptions = createMemo(() => Array.from({ length: props.fileCount }, (_, i) => ({ name: `File ${i + 1}`, index: i })));
+  const fileOptions = createMemo(() =>
+    Array.from({ length: props.fileCount }, (_, i) => ({ name: `File ${i + 1}`, index: i })),
+  );
   const selectedOption = createMemo(() => fileOptions()[props.currentFile] ?? fileOptions()[0]);
   const selectKey = createMemo(() => `${props.fileCount}:${props.currentFile}`);
 

@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    background-color: var(--secondary-bg);
+    padding: 2rem;
+}
+.wrapper {
+    display: flex;
+    width: 95%;
+    margin: 2em 0 2em 0;
+    align-self: center;
+    flex: 1;
+    gap: 3rem;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: .5em;
+}
+
+@media (min-width: 992px) {
+  .wrapper {
+    flex-direction: row;
+  }
+
+}
+
+@media (min-width: 1536px) {
+  .wrapper {
+    width: 90%;
+  }
+}

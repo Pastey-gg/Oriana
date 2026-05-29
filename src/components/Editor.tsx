@@ -49,10 +49,10 @@ import "solid-prism-editor/search.css";
 import "solid-prism-editor/copy-button.css";
 
 import { type Component, createMemo, createSignal, Match, Show, Switch, untrack } from "solid-js";
-import { metaStore, pasteStore, setPasteStore } from "~/stores";
 import { Editor, type PrismEditor } from "solid-prism-editor";
 import { copyButton } from "solid-prism-editor/copy-button";
 import { indentGuides } from "solid-prism-editor/guides";
+import { metaStore, pasteStore, setPasteStore } from "~/stores";
 import type { PasteResponse } from "~/types/pastes";
 import styles from "../styles/Editor.module.scss";
 import MetaBar from "./MetaBar";

@@ -20,6 +20,10 @@ main {
     width: 100vw;
 }
 
+a {
+  color: var(--secondary-color--80);
+}
+
 #app {
     overflow: clip
 }
