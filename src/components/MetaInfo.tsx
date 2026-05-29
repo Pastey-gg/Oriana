@@ -32,7 +32,9 @@ const MetaInfo: Component<Props> = (props) => {
           <ToggleSwitch checked={false} />
         </span>
         <div class="saveButton">Save</div>
-        <div class={styles.addFileButton} onClick={props.onAddFile}>+ Add file</div>
+        <div class={styles.addFileButton} onClick={props.onAddFile}>
+          + Add file
+        </div>
       </div>
     </div>
   );

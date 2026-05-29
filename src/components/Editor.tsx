@@ -48,7 +48,7 @@ import "solid-prism-editor/themes/github-dark.css";
 import "solid-prism-editor/search.css";
 import "solid-prism-editor/copy-button.css";
 
-import { createMemo, Match, type Component, Switch } from "solid-js";
+import { type Component, createMemo, Match, Switch } from "solid-js";
 import { Editor } from "solid-prism-editor";
 import { copyButton } from "solid-prism-editor/copy-button";
 import { indentGuides } from "solid-prism-editor/guides";
