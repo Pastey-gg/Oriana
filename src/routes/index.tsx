@@ -1,6 +1,6 @@
 import { clientOnly } from "@solidjs/start";
 import MetaInfo from "~/components/MetaInfo";
-import { pasteStore, setPasteStore } from "~/stores";
+import { pasteStore, setMetaStore, setPasteStore } from "~/stores";
 import type { PasteFileCreate } from "~/types/files";
 import TopBar from "../components/Topbar";
 
@@ -12,7 +12,10 @@ export default function Home() {
       return;
     }
 
-    setPasteStore("files", (currentFiles) => [...currentFiles, {} as PasteFileCreate]);
+    const nextFileIndex = pasteStore.files.length;
+
+    setPasteStore("files", (currentFiles) => [...currentFiles, { content: "" } as PasteFileCreate]);
+    setMetaStore("currentFile", nextFileIndex);
   };
 
   return (

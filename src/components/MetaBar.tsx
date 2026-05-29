@@ -1,18 +1,27 @@
 import { Select } from "@thisbeyond/solid-select";
 import type { Component } from "solid-js";
+import { metaStore, pasteStore, setMetaStore, setPasteStore } from "~/stores";
 import ChevronSVG from "~/svgs/Chevron";
 import styles from "../styles/MetaBar.module.scss";
 import FileSelector from "./FileSelector";
 
-interface Props {
-  fileCount?: number;
-}
+const MetaBar: Component = () => {
+  const setCurrentFile = (index: number) => {
+    setMetaStore("currentFile", index);
+  };
 
-const MetaBar: Component<Props> = (props) => {
+  const setCurrentFileName = (name: string) => {
+    setPasteStore("files", metaStore.currentFile, "name", name);
+  };
+
   return (
     <div class={styles.topBar}>
-      <FileSelector fileCount={props.fileCount ?? 1} />
-      <input placeholder="Optional filename..."></input>
+      <FileSelector fileCount={pasteStore.files.length} currentFile={metaStore.currentFile} onFileChange={setCurrentFile} />
+      <input
+        placeholder="Optional filename..."
+        value={pasteStore.files[metaStore.currentFile]?.name ?? ""}
+        onInput={(event) => setCurrentFileName(event.currentTarget.value)}
+      ></input>
       <div class={styles.langSelectWrapper}>
         <Select class={`${styles.langSelect} customSelect`} placeholder="Syntax..." options={[1, 2, 3]} />
         <span class={styles.fileSelectorChevron}>

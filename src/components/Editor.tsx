@@ -48,7 +48,8 @@ import "solid-prism-editor/themes/github-dark.css";
 import "solid-prism-editor/search.css";
 import "solid-prism-editor/copy-button.css";
 
-import { type Component, createMemo, Match, Switch } from "solid-js";
+import { type Component, createMemo, createSignal, Match, Switch } from "solid-js";
+import { metaStore, pasteStore, setPasteStore } from "~/stores";
 import { Editor } from "solid-prism-editor";
 import { copyButton } from "solid-prism-editor/copy-button";
 import { indentGuides } from "solid-prism-editor/guides";
@@ -64,19 +65,43 @@ interface Props {
 const IEditor: Component<Props> = (props) => {
   // TODO: Settings...
   const extensions = createMemo(() => [copyButton(), indentGuides()]);
+  const [viewFile, setViewFile] = createSignal(0);
+  const draftFile = createMemo(() => pasteStore.files[metaStore.currentFile]);
+  const viewedFile = createMemo(() => props.paste?.files[viewFile()]);
+
+  const setCurrentFileContent = (content: string) => {
+    setPasteStore("files", metaStore.currentFile, "content", content);
+  };
 
   return (
     <div class={styles.container}>
       <Switch>
         <Match when={props.paste}>
           {/** biome-ignore lint/style/noNonNullAssertion: Match ensures props.paste */}
-          <MetaBarWith paste={props.paste!} />
+          <MetaBarWith paste={props.paste!} currentFile={viewFile()} onFileChange={setViewFile} />
         </Match>
         <Match when={!props.paste}>
           <MetaBar />
         </Match>
       </Switch>
-      <Editor extensions={extensions()} />
+      <Switch>
+        <Match when={props.paste}>
+          <Editor
+            extensions={extensions()}
+            language={viewedFile()?.language ?? "text"}
+            readOnly
+            value={viewedFile()?.content ?? ""}
+          />
+        </Match>
+        <Match when={!props.paste}>
+          <Editor
+            extensions={extensions()}
+            language={draftFile()?.language ?? "text"}
+            value={draftFile()?.content ?? ""}
+            onUpdate={setCurrentFileContent}
+          />
+        </Match>
+      </Switch>
     </div>
   );
 };

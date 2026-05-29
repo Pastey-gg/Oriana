@@ -1,5 +1,5 @@
 import { Select } from "@thisbeyond/solid-select";
-import type { Component } from "solid-js";
+import { type Component, createMemo } from "solid-js";
 import ChevronSVG from "~/svgs/Chevron";
 import type { PasteResponse } from "~/types/pastes";
 import styles from "../styles/MetaBar.module.scss";
@@ -7,15 +7,19 @@ import FileSelector from "./FileSelector";
 
 interface Props {
   paste: PasteResponse;
+  currentFile: number;
+  onFileChange: (index: number) => void;
 }
 
 const MetaBarWith: Component<Props> = (props) => {
+  const file = createMemo(() => props.paste.files[props.currentFile]);
+
   return (
     <div class={styles.topBar}>
-      <FileSelector fileCount={props.paste.files.length} />
-      <input placeholder="Optional filename..." value={props.paste.files[0]?.name ?? ""}></input>
+      <FileSelector fileCount={props.paste.files.length} currentFile={props.currentFile} onFileChange={props.onFileChange} />
+      <input placeholder="Optional filename..." value={file()?.name ?? ""} readOnly></input>
       <div class={styles.langSelectWrapper}>
-        <Select class={`${styles.langSelect} customSelect`} placeholder="Syntax..." options={[1, 2, 3]} />
+        <Select class={`${styles.langSelect} customSelect`} placeholder={file()?.language ?? "Syntax..."} options={[1, 2, 3]} />
         <span class={styles.fileSelectorChevron}>
           <ChevronSVG />
         </span>
