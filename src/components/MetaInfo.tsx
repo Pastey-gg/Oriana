@@ -1,7 +1,6 @@
 import { Select } from "@thisbeyond/solid-select";
 import { type Component, createSignal, Show } from "solid-js";
 import styles from "../styles/MetaInfo.module.scss";
-import "@thisbeyond/solid-select/style.css";
 import { useNavigate } from "@solidjs/router";
 import toast from "solid-toast";
 import { pasteStore, setPasteStore } from "~/stores";
@@ -35,7 +34,7 @@ const MetaInfo: Component<Props> = (props) => {
     const body = JSON.stringify({ files: newFiles });
 
     try {
-      resp = await fetch(`${import.meta.env.VITE_API_HOST}/pastes`, { method: "POST", body: body });
+      resp = await fetch(`${import.meta.env.VITE_API_HOST}/pastes`, { method: "POST", headers: { "Content-Type": "application/json" }, body: body });
     } catch (error: unknown) {
       if (error instanceof Error) {
         setError(error.message);
