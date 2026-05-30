@@ -1,6 +1,6 @@
 import { type Params, useLocation, useNavigate, useParams } from "@solidjs/router";
 import { clientOnly } from "@solidjs/start";
-import { createResource } from "solid-js";
+import { createResource, Show } from "solid-js";
 import FooterBar from "~/components/Footer";
 import MetaInfoWith from "~/components/MetaInfoWith";
 import type { PasteResponse } from "~/types/pastes";
@@ -42,10 +42,14 @@ export default function ViewPaste() {
   return (
     <main>
       <TopBar></TopBar>
-      <div class="inner">
-        <IEditor paste={pasteResp()} />
+      <div class="wrapper">
+        <div class="inner">
+          <IEditor paste={pasteResp()} />
+        </div>
+        <Show when={pasteResp()}>
+          <MetaInfoWith paste={pasteResp()!} />
+        </Show>
       </div>
-      <MetaInfoWith />
       <FooterBar />
     </main>
   );

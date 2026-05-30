@@ -85,7 +85,6 @@ const IEditor: Component<Props> = (props) => {
     <div class={styles.container}>
       <Switch>
         <Match when={props.paste}>
-          {/** biome-ignore lint/style/noNonNullAssertion: Match ensures props.paste */}
           <MetaBarWith paste={props.paste!} currentFile={viewFile()} onFileChange={setViewFile} />
         </Match>
         <Match when={!props.paste}>
@@ -97,13 +96,13 @@ const IEditor: Component<Props> = (props) => {
           <Editor
             extensions={extensions()}
             language={viewedFile()?.language ?? "text"}
-            readOnly
+            readOnly={true}
             value={viewedFile()?.content ?? ""}
             onMount={(editor) => setEditorFieldAttrs(editor, "paste-content-viewer", "pasteContent")}
           />
         </Match>
         <Match when={!props.paste}>
-          <Show keyed when={draftEditorKey()}>
+          <Show keyed={true} when={draftEditorKey()}>
             <Editor
               extensions={extensions()}
               language={draftFile()?.language ?? "text"}

@@ -22,7 +22,7 @@ const MetaBarWith: Component<Props> = (props) => {
         name="fileName"
         placeholder="Optional filename..."
         value={file()?.name ?? ""}
-        readOnly
+        readOnly={true}
       ></input>
       <div class={styles.langSelectWrapper}>
         <Select

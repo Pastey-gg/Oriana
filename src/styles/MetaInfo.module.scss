@@ -8,6 +8,31 @@
     user-select: none;
 }
 
+.partInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    font-size: 0.9em;
+    color: var(--secondary-color);
+    font-weight: 400;
+    user-select: none;
+    &>b {
+        color: var(--primary-color);
+        font-weight: 700;
+    }
+    &>span {
+        font-size: 0.9em;
+        display: flex;
+        gap: 0.5em;
+        align-items: center;
+    }
+    &>.identifier {
+        color: var(--accent-color)!important;
+        font-size: 1.3em;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+    }
+}
 
 .smallText {
     font-size: 0.75rem;
