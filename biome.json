@@ -20,7 +20,8 @@
     "rules": {
       "recommended": true,
       "style": {
-        "noImplicitBoolean": "on"
+        "noImplicitBoolean": "on",
+        "noNonNullAssertion": "off"
       },
       "a11y": {
         "noStaticElementInteractions": "off",
