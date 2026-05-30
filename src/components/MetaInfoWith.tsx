@@ -1,10 +1,10 @@
 import { Match, Show, Switch, type ParentComponent } from "solid-js";
+import FaSolidClockFour from "~/svgs/Clock";
+import FaSolidEye from "~/svgs/Eye";
+import FaSolidHourglass1 from "~/svgs/Hourglass";
 import type { PasteResponse } from "~/types/pastes";
 import styles from "../styles/MetaInfo.module.scss";
 import RelativeTimeDisplay from "./RelativeTimeDisplay";
-import FaSolidHourglass1 from "~/svgs/Hourglass";
-import FaSolidClockFour from "~/svgs/Clock";
-import FaSolidEye from "~/svgs/Eye";
 
 interface Props {
   paste: PasteResponse;
@@ -34,7 +34,7 @@ const MetaInfoWith: ParentComponent<Props> = (props) => {
               </span>
             </Match>
             <Match when={!props.paste.expires_at}>
-              <span>Never</span>
+              <span><FaSolidHourglass1 />Never</span>
             </Match>
           </Switch>
         </div>
