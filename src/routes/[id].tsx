@@ -21,7 +21,23 @@ export default function ViewPaste() {
     let resp: Response;
 
     try {
-      resp = await fetch(`${import.meta.env.VITE_API_HOST}/pastes/${params.id}`);
+      const storageKey = "oriana:safety-token:" + params.id;
+      const safetyToken = typeof window !== "undefined" ? sessionStorage.getItem(storageKey) : null;
+      const url = new URL(`${import.meta.env.VITE_API_HOST}/pastes/${params.id}`);
+
+      if (safetyToken) {
+        url.searchParams.set("skip_view", "true");
+      }
+      const headers: HeadersInit = {};
+
+      if (safetyToken) {
+        headers["X-Safety-Token"] = safetyToken;
+      }
+
+      resp = await fetch(url, { headers });
+      if (resp.status === 200 && safetyToken && typeof window !== "undefined") {
+        sessionStorage.removeItem(storageKey);
+      }
       if (resp.status === 200) {
         return await resp.json();
       }
