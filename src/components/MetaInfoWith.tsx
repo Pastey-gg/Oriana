@@ -1,4 +1,4 @@
-import { Match, type ParentComponent, Show, Switch } from "solid-js";
+import { Match, type ParentComponent, Switch } from "solid-js";
 import FaSolidClockFour from "~/svgs/Clock";
 import FaSolidCode from "~/svgs/Code";
 import FaSolidCopy from "~/svgs/Copy";
