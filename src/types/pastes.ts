@@ -8,4 +8,5 @@ export type PasteResponse = {
   remaining_views?: number;
   has_password: boolean;
   files: Array<PasteFileResponse>;
+  web: boolean;
 };

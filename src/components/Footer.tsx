@@ -1,21 +1,31 @@
+import { useNavigate } from "@solidjs/router";
 import type { ParentComponent } from "solid-js";
+import { setPasteStore } from "~/stores";
 import FaBrandsDiscord from "~/svgs/Discord";
 import FaBrandsGithub from "~/svgs/GitHub";
 import Logo from "~/svgs/Logo";
 import VsVscode from "~/svgs/VSC";
+import type { PasteFileCreate } from "~/types/files";
 import styles from "../styles/FooterBar.module.scss";
 
 const FooterBar: ParentComponent = () => {
+  const navigate = useNavigate();
+
+  const goHome = () => {
+    setPasteStore(() => ({"files": [{} as PasteFileCreate], "password": undefined, "expiry": undefined, "view": undefined}))
+    navigate("/")
+  }
+  
   return (
     <div class={styles.container}>
       <div class={styles.wrapper}>
         <div class={`${styles.col} ${styles.colc}`}>
           <a
             href="/"
-            class="header fs-1.1 fb flex ai-center gap-.4"
+            class="header fs-1.1 fb flex ai-center gap-.4 noa"
             onclick={(e) => {
               e.preventDefault();
-              window.location.reload();
+              goHome();
             }}
           >
             <span class="logo">

@@ -1,11 +1,11 @@
+import { useNavigate } from "@solidjs/router";
 import { Select } from "@thisbeyond/solid-select";
 import { type Component, createSignal, Show } from "solid-js";
-import styles from "../styles/MetaInfo.module.scss";
-import { useNavigate } from "@solidjs/router";
 import toast from "solid-toast";
 import { pasteStore, setPasteStore } from "~/stores";
 import FaRegularCircleQuestion from "~/svgs/Question";
 import type { PasteFileCreate } from "~/types/files";
+import styles from "../styles/MetaInfo.module.scss";
 import ToggleSwitch from "./Toggle";
 
 interface Props {
@@ -34,7 +34,7 @@ const MetaInfo: Component<Props> = (props) => {
     const body = JSON.stringify({ files: newFiles });
 
     try {
-      resp = await fetch(`${import.meta.env.VITE_API_HOST}/pastes`, {
+      resp = await fetch(`${import.meta.env.VITE_API_HOST}/pastes?web=true`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -58,9 +58,9 @@ const MetaInfo: Component<Props> = (props) => {
 
     const data = await resp.json();
     if (typeof window !== "undefined") {
-      sessionStorage.setItem("oriana:safety-token:" + data.id, data.safety_token);
+      sessionStorage.setItem(`oriana:safety-token:${data.id}`, data.safety_token);
     }
-    navigate("/" + data.id);
+    navigate(`/${data.id}`);
   };
 
   const showError = () => {

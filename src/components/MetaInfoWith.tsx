@@ -23,6 +23,10 @@ const MetaInfoWith: ParentComponent<Props> = (props) => {
           </a>
         </div>
         <div class={styles.partInfo}>
+          <span>Pasted via {props.paste.web ? "web" : "api"}</span>
+          {}
+        </div>
+        <div class={styles.partInfo}>
           <div class={`${styles.button} ${styles.copyButton}`}>
             <FaSolidCopy />
             <span>Copy URL</span>

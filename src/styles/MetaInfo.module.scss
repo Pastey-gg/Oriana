@@ -87,6 +87,13 @@
     &:active {
         transform: scale(0.99);
     }
+    &>svg {
+        height: 100%;
+        width: auto;
+    }
+    &>span {
+        height: 100%;
+    }
 }
 
 .copyButton {
