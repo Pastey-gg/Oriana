@@ -34,20 +34,20 @@ const MetaInfo: Component<Props> = (props) => {
     const body = JSON.stringify({ files: newFiles });
 
     try {
-        resp = await fetch(`${import.meta.env.VITE_API_HOST}/pastes`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: body
-        });
+      resp = await fetch(`${import.meta.env.VITE_API_HOST}/pastes`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: body,
+      });
     } catch (error: unknown) {
-        if (error instanceof Error) {
-            setError(error.message);
-        } else {
-            setError(String(error));
-        }
-        return;
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError(String(error));
+      }
+      return;
     }
 
     if (resp.status !== 201) {

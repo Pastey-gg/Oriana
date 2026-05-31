@@ -1,5 +1,8 @@
-import { Match, Show, Switch, type ParentComponent } from "solid-js";
+import { Match, type ParentComponent, Show, Switch } from "solid-js";
 import FaSolidClockFour from "~/svgs/Clock";
+import FaSolidCode from "~/svgs/Code";
+import FaSolidCopy from "~/svgs/Copy";
+import FaSolidDownload from "~/svgs/Download";
 import FaSolidEye from "~/svgs/Eye";
 import FaSolidHourglass1 from "~/svgs/Hourglass";
 import type { PasteResponse } from "~/types/pastes";
@@ -20,12 +23,24 @@ const MetaInfoWith: ParentComponent<Props> = (props) => {
           </a>
         </div>
         <div class={styles.partInfo}>
+          <div class={`${styles.button} ${styles.copyButton}`}>
+            <FaSolidCopy />
+            <span>Copy URL</span>
+          </div>
+          <div class={styles.button}>
+            <FaSolidCode />
+            <span>View Raw</span>
+          </div>
+          <div class={styles.button}>
+            <FaSolidDownload />
+            <span>Download</span>
+          </div>
+        </div>
+        <div class={styles.partInfo}>
           <span>
             <FaSolidClockFour />
             <RelativeTimeDisplay timestamp={props.paste.created_at} />
           </span>
-        </div>
-        <div class={styles.partInfo}>
           <Switch>
             <Match when={props.paste.expires_at}>
               <span>
@@ -34,11 +49,12 @@ const MetaInfoWith: ParentComponent<Props> = (props) => {
               </span>
             </Match>
             <Match when={!props.paste.expires_at}>
-              <span><FaSolidHourglass1 />Never</span>
+              <span>
+                <FaSolidHourglass1 />
+                Never
+              </span>
             </Match>
           </Switch>
-        </div>
-        <div class={styles.partInfo}>
           <span>
             <FaSolidEye />
             {props.paste.views} views

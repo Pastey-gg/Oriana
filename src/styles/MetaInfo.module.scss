@@ -11,10 +11,10 @@
 .partInfo {
     display: flex;
     flex-direction: column;
-    gap: 0.5em;
+    gap: 0.5rem;
     font-size: 0.9em;
     color: var(--secondary-color);
-    font-weight: 400;
+    font-weight: 300;
     user-select: none;
     &>b {
         color: var(--primary-color);
@@ -49,6 +49,7 @@
 .metaInner {
     height: 100%;
     max-height: 100%;
+    gap: 2rem;
 }
 
 .addFileButton {
@@ -67,3 +68,29 @@
         color: var(--primary-color);
     }
 }
+
+.button {
+    padding: .6rem 1em;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.4em;
+    border: 1px solid var(--secondary-color--10);
+    color: var(--secondary-color);
+    font-size: 1em;
+    text-align: center;
+    &:hover {
+        cursor: pointer;
+        background-color: var(--secondary-color--10);
+    }
+    &:active {
+        transform: scale(0.99);
+    }
+}
+
+.copyButton {
+    background-color: var(--secondary-bg);
+}
+
+.copyButton:hover {background-color: var(--secondary-color--10)}
