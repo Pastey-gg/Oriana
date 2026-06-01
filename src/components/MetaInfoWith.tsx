@@ -24,6 +24,8 @@ const MetaInfoWith: ParentComponent<Props> = (props) => {
     toast.success("Copied URL to clipboard!");
   };
 
+  const rawURL = () => `${import.meta.env.VITE_API_HOST}/pastes/${props.paste.id}/raw`;
+
   const downloadPaste = async () => {
     if (dlStatus()) {
       return;
@@ -71,10 +73,10 @@ const MetaInfoWith: ParentComponent<Props> = (props) => {
             <FaSolidCopy />
             <span>Copy URL</span>
           </div>
-          <div class={styles.button}>
+          <a class={styles.button} href={rawURL()} target="_blank" rel="noreferrer">
             <FaSolidCode />
             <span>View Raw</span>
-          </div>
+          </a>
           <div class={styles.button} onclick={downloadPaste}>
             <Switch>
               <Match when={!dlStatus()}>
