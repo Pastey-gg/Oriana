@@ -28,6 +28,10 @@
   flex-direction: column!important;
 }
 
+.col > .header {
+  color: var(--primary-color);
+}
+
 .icons {
   font-size: 1.5rem;
   gap: 1.25rem;

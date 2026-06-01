@@ -12,10 +12,10 @@ interface Props {
 const NavBar: ParentComponent<Props> = (props) => {
   const navigate = useNavigate();
 
-    const goHome = () => {
-      setPasteStore(() => ({"files": [{} as PasteFileCreate], "password": undefined, "expiry": undefined, "view": undefined}))
-      navigate("/")
-    }
+  const goHome = () => {
+    setPasteStore(() => ({ files: [{} as PasteFileCreate], password: undefined, expiry: undefined, view: undefined }));
+    navigate("/");
+  };
 
   return (
     <div class={styles.container}>

@@ -21,10 +21,9 @@ const MetaInfoWith: ParentComponent<Props> = (props) => {
           <a class={styles.identifier} href={`/${props.paste.id}`}>
             /{props.paste.id}
           </a>
-        </div>
-        <div class={styles.partInfo}>
-          <span>Pasted via {props.paste.web ? "web" : "api"}</span>
-          {}
+          <div class={styles.partInfo}>
+            <span>Pasted via {props.paste.web ? "web" : "api"}</span>
+          </div>
         </div>
         <div class={styles.partInfo}>
           <div class={`${styles.button} ${styles.copyButton}`}>
