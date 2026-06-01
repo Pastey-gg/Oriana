@@ -148,9 +148,11 @@ input:focus {
   padding: 0.6em;
   width: 60%;
   align-self: center;
+  color: var(--error);
   &:hover {
     cursor: pointer;
     background-color: var(--error--60);
+    color: #FFFFFF;
   }
   background-color: transparent;
   border: 1px dashed var(--error--60);
