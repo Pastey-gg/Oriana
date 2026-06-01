@@ -1,4 +1,7 @@
-import { Match, type ParentComponent, Switch } from "solid-js";
+import { writeClipboard } from "@solid-primitives/clipboard";
+import JSZip from "jszip";
+import { createSignal, Match, type ParentComponent, Switch } from "solid-js";
+import toast from "solid-toast";
 import FaSolidClockFour from "~/svgs/Clock";
 import FaSolidCode from "~/svgs/Code";
 import FaSolidCopy from "~/svgs/Copy";
@@ -14,6 +17,44 @@ interface Props {
 }
 
 const MetaInfoWith: ParentComponent<Props> = (props) => {
+  const [dlStatus, setDlStatus] = createSignal(false);
+
+  const copyURL = async () => {
+    writeClipboard(`${window.location.protocol}//${window.location.host}/${props.paste.id}`);
+    toast.success("Copied URL to clipboard!");
+  };
+
+  const downloadPaste = async () => {
+    if (dlStatus()) {
+      return;
+    }
+
+    setDlStatus(true);
+    const zip = new JSZip();
+
+    for (const file of props.paste.files) {
+      zip.file(file.name || `${file.id}.txt`, file.content);
+    }
+
+    try {
+      const content = await zip.generateAsync({ type: "blob" });
+
+      const element = document.createElement("a");
+      element.href = URL.createObjectURL(content);
+      element.download = `${props.paste.id}.zip`;
+      document.body.appendChild(element);
+      element.click();
+
+      document.body.removeChild(element);
+      URL.revokeObjectURL(element.href);
+      setDlStatus(false);
+
+      toast.success("Successfully generated zip for download!");
+    } catch (err) {
+      toast.error(`Unable to generate zip: ${err}`);
+    }
+  };
+
   return (
     <div class="flexc" id="metaInfo">
       <div class={`${styles.metaInner} flexc gap-0.5`}>
@@ -26,7 +67,7 @@ const MetaInfoWith: ParentComponent<Props> = (props) => {
           </div>
         </div>
         <div class={styles.partInfo}>
-          <div class={`${styles.button} ${styles.copyButton}`}>
+          <div class={`${styles.button} ${styles.copyButton}`} onclick={copyURL}>
             <FaSolidCopy />
             <span>Copy URL</span>
           </div>
@@ -34,9 +75,14 @@ const MetaInfoWith: ParentComponent<Props> = (props) => {
             <FaSolidCode />
             <span>View Raw</span>
           </div>
-          <div class={styles.button}>
-            <FaSolidDownload />
-            <span>Download</span>
+          <div class={styles.button} onclick={downloadPaste}>
+            <Switch>
+              <Match when={!dlStatus()}>
+                <FaSolidDownload />
+                <span>Download</span>
+              </Match>
+              <Match when={dlStatus()}>Generating Download...</Match>
+            </Switch>
           </div>
         </div>
         <div class={styles.partInfo}>

@@ -16,7 +16,7 @@ export default function App() {
           <Suspense>
             <Toaster
               position="bottom-center"
-              gutter={16}
+              gutter={32}
               toastOptions={{
                 className: "toasty",
                 iconTheme: {
