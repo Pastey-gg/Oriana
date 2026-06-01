@@ -20,9 +20,8 @@ ENV NODE_ENV=production
 ENV HOST=0.0.0.0
 ENV PORT=8181
 
-COPY package.json ./
 COPY --from=builder /app/.output ./.output
 
 EXPOSE 8181
 
-CMD ["npm", "start"]
+CMD ["node", ".output/server/index.mjs"]
