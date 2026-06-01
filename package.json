@@ -4,8 +4,8 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "start": "vite start",
-    "preview": "vite preview"
+    "start": "node .output/server/index.mjs",
+    "preview": "node .output/server/index.mjs"
   },
   "dependencies": {
     "@solid-primitives/active-element": "^2.1.5",

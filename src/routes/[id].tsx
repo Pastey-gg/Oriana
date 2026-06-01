@@ -1,17 +1,16 @@
 import { type Params, useLocation, useNavigate, useParams } from "@solidjs/router";
-import { clientOnly } from "@solidjs/start";
 import { createResource, Show } from "solid-js";
 import FooterBar from "~/components/Footer";
 import MetaInfoWith from "~/components/MetaInfoWith";
 import type { PasteResponse } from "~/types/pastes";
 import TopBar from "../components/Topbar";
+import IEditor from "../components/ClientEditor";
 
 interface ParamsT extends Params {
   id: string;
 }
 
 export default function ViewPaste() {
-  const IEditor = clientOnly(() => import("../components/Editor"));
   const location = useLocation();
   const navigate = useNavigate();
   const params: ParamsT = useParams();

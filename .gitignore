@@ -1,4 +1,6 @@
 dist
+.solid-start
+.nitro
 .wrangler
 .output
 .vercel
