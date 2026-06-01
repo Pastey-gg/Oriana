@@ -1,5 +1,6 @@
-import type { Component } from "solid-js";
+import { createMemo, type Component } from "solid-js";
 import { Editor, type Extension, type PrismEditor } from "solid-prism-editor";
+import { defaultCommands } from "solid-prism-editor/commands";
 
 interface Props {
   extensions: Extension[];
@@ -12,6 +13,11 @@ interface Props {
 }
 
 const CodeEditor: Component<Props> = (props) => {
+  const effectiveExtensions = createMemo(() => {
+    if (props.readOnly) return props.extensions;
+    return [defaultCommands(), ...props.extensions];
+  });
+
   const setFieldAttrs = (editor: PrismEditor) => {
     editor.textarea.id = props.id;
     editor.textarea.name = props.name;
@@ -19,7 +25,7 @@ const CodeEditor: Component<Props> = (props) => {
 
   return (
     <Editor
-      extensions={props.extensions}
+      extensions={effectiveExtensions()}
       language={props.language}
       readOnly={props.readOnly}
       value={props.value}
