@@ -4,6 +4,7 @@ import { setPasteStore } from "~/stores";
 import Logo from "~/svgs/Logo";
 import type { PasteFileCreate } from "~/types/files";
 import styles from "../styles/Topbar.module.scss";
+import ThemeToggle from "./ThemeToggle";
 
 interface Props {
   id?: string;
@@ -33,6 +34,7 @@ const NavBar: ParentComponent<Props> = (props) => {
           </span>
           <span>pastey.gg</span>
         </A>
+        <ThemeToggle />
       </div>
       <div class={styles.metaRow}>{props.children}</div>
     </div>
