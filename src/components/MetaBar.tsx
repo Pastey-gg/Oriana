@@ -4,6 +4,7 @@ import { metaStore, pasteStore, setMetaStore, setPasteStore } from "~/stores";
 import ChevronSVG from "~/svgs/Chevron";
 import styles from "../styles/MetaBar.module.scss";
 import FileSelector from "./FileSelector";
+import { findLang, loadLangs, onLangUpdate } from "./SetLang";
 
 const MetaBar: Component = () => {
   const setCurrentFile = (index: number) => {
@@ -30,7 +31,9 @@ const MetaBar: Component = () => {
           name="fileLanguage"
           class={`${styles.langSelect} customSelect`}
           placeholder="Syntax..."
-          options={[1, 2, 3]}
+          {...loadLangs}
+          onChange={onLangUpdate}
+          initialValue={findLang()}
         />
         <span class={styles.fileSelectorChevron}>
           <ChevronSVG />

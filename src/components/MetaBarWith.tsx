@@ -4,6 +4,7 @@ import ChevronSVG from "~/svgs/Chevron";
 import type { PasteResponse } from "~/types/pastes";
 import styles from "../styles/MetaBar.module.scss";
 import FileSelector from "./FileSelector";
+import { findLang, loadLangs, onLangUpdate } from "./SetLang";
 
 interface Props {
   paste: PasteResponse;
@@ -29,8 +30,9 @@ const MetaBarWith: Component<Props> = (props) => {
           id="paste-file-language-view"
           name="fileLanguage"
           class={`${styles.langSelect} customSelect`}
-          placeholder={file()?.language ?? "Syntax..."}
-          options={[1, 2, 3]}
+          {...loadLangs}
+          onChange={onLangUpdate}
+          initialValue={findLang()}
         />
         <span class={styles.fileSelectorChevron}>
           <ChevronSVG />

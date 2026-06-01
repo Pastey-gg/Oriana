@@ -24,10 +24,19 @@ a {
   color: var(--secondary-color--80);
 }
 
+.noa {
+  color: unset;
+  text-decoration: unset;
+}
+
 hr {
   border: none;
   border-bottom: 1px solid var(--secondary-color--30);
   width: 100%;
+}
+
+* {
+  scrollbar-color: var(--primary-bg) var(--secondary-bg); /* thumb color | track color */
 }
 
 #app {
@@ -71,6 +80,10 @@ hr {
     font-family: "Inter", sans-serif;
 }
 
+.noa >span {
+  color: var(--primary-color);
+}
+
 .logo>svg {
     height: 2em;
     width: 2em;
@@ -96,6 +109,17 @@ input:focus {
 
 .blue {
     color: #888edb;
+}
+
+.langIn {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.langIn > svg {
+  height: 1.2em;
+  width: auto;
 }
 
 /* BUTTONS */
@@ -234,6 +258,9 @@ input:focus {
 .prism-code-editor {
     margin-top: .4em;
     background-color: var(--editor-bg)!important;
+    font-variant-ligatures: none;
+    font-size: 13px;
+    font-weight: 300!important;
 }
 
 [data-theme="light"] .prism-code-editor,

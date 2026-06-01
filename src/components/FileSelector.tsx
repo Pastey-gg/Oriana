@@ -45,7 +45,7 @@ const FileSelector: Component<Props> = (props) => {
   return (
     <Show when={props.fileCount > 1} fallback={<div class={`${styles.fileSelect} ${styles.fileStatic}`}>File 1 of 1</div>}>
       <div class={styles.fileSelectorWrapper}>
-        <Show keyed when={selectKey()}>
+        <Show keyed={true} when={selectKey()}>
           <Select
             id="paste-file-selector"
             name="paste-file"

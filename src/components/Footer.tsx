@@ -12,10 +12,10 @@ const FooterBar: ParentComponent = () => {
   const navigate = useNavigate();
 
   const goHome = () => {
-    setPasteStore(() => ({"files": [{} as PasteFileCreate], "password": undefined, "expiry": undefined, "view": undefined}))
-    navigate("/")
-  }
-  
+    setPasteStore(() => ({ files: [{} as PasteFileCreate], password: undefined, expiry: undefined, view: undefined }));
+    navigate("/");
+  };
+
   return (
     <div class={styles.container}>
       <div class={styles.wrapper}>

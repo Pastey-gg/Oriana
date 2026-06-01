@@ -44,7 +44,7 @@ import "solid-prism-editor/prism/languages/yaml";
 import "solid-prism-editor/prism/languages/regex";
 import "solid-prism-editor/prism/languages/toml";
 import "solid-prism-editor/layout.css";
-import "solid-prism-editor/themes/github-dark.css";
+import "solid-prism-editor/themes/atom-one-dark.css";
 import "solid-prism-editor/search.css";
 import "solid-prism-editor/copy-button.css";
 
