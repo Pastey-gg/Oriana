@@ -264,14 +264,13 @@ input:focus {
 }
 
 [data-theme="light"] .prism-code-editor,
-[data-theme="light"] .prism-code-editor textarea,
 [data-theme="light"] .prism-code-editor pre,
-[data-theme="light"] .prism-code-editor code,
-[data-theme="light"] .prism-code-editor .token {
+[data-theme="light"] .prism-code-editor code {
   color: var(--primary-color)!important;
 }
 
 [data-theme="light"] .prism-code-editor {
+  --pce-cursor: var(--primary-color)!important;
   --pce-line-number: var(--secondary-color--60)!important;
   --pce-bg-highlight: rgba(15, 23, 42, .08)!important;
   --pce-widget-border: rgba(31, 41, 55, .22)!important;
