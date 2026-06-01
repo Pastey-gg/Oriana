@@ -1,15 +1,17 @@
 import { Select } from "@thisbeyond/solid-select";
-import { type Component, createMemo } from "solid-js";
+import { type Component, createMemo, Show } from "solid-js";
 import ChevronSVG from "~/svgs/Chevron";
 import type { PasteResponse } from "~/types/pastes";
 import styles from "../styles/MetaBar.module.scss";
 import FileSelector from "./FileSelector";
-import { findLang, loadLangs, onLangUpdate } from "./SetLang";
+import { loadLangs, resolveLang } from "./SetLang";
 
 interface Props {
   paste: PasteResponse;
   currentFile: number;
+  selectedLanguage: string;
   onFileChange: (index: number) => void;
+  onLanguageChange: (language: string) => void;
 }
 
 const MetaBarWith: Component<Props> = (props) => {
@@ -26,14 +28,16 @@ const MetaBarWith: Component<Props> = (props) => {
         readOnly={true}
       ></input>
       <div class={styles.langSelectWrapper}>
-        <Select
-          id="paste-file-language-view"
-          name="fileLanguage"
-          class={`${styles.langSelect} customSelect`}
-          {...loadLangs}
-          onChange={onLangUpdate}
-          initialValue={findLang()}
-        />
+        <Show keyed={true} when={props.currentFile + ":" + props.selectedLanguage}>
+          <Select
+            id="paste-file-language-view"
+            name="fileLanguage"
+            class={`${styles.langSelect} customSelect`}
+            {...loadLangs}
+            initialValue={resolveLang(props.selectedLanguage)}
+            onChange={(value) => value && props.onLanguageChange(value.name)}
+          />
+        </Show>
         <span class={styles.fileSelectorChevron}>
           <ChevronSVG />
         </span>

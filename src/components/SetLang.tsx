@@ -52,8 +52,8 @@ const format = (value: LangObj, type: any, meta: any) => {
 
 const loadLangs = createOptions(LANGS, { format, extractText: (value: LangObj) => value.name });
 
-const findLang = (): LangObj => {
-  const name = pasteStore.files[metaStore.currentFile].language || "text";
+const resolveLang = (language?: string): LangObj => {
+  const name = language || "text";
   let lang = LANGS.find((l) => l.name === name);
 
   if (lang !== undefined) {
@@ -64,4 +64,6 @@ const findLang = (): LangObj => {
   return lang || { name: "text", icon: TextIcon };
 };
 
-export { findLang, findLangByExt, format, loadLangs, onLangUpdate, onNameUpdate };
+const findLang = (): LangObj => resolveLang(pasteStore.files[metaStore.currentFile].language);
+
+export { findLang, findLangByExt, format, loadLangs, onLangUpdate, onNameUpdate, resolveLang };

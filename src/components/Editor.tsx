@@ -66,14 +66,20 @@ const IEditor: Component<Props> = (props) => {
   // TODO: Settings...
   const extensions = createMemo(() => [copyButton(), indentGuides()]);
   const [viewFile, setViewFile] = createSignal(0);
+  const [viewLanguageOverrides, setViewLanguageOverrides] = createSignal<Record<number, string>>({});
   const draftFile = createMemo(() => pasteStore.files[metaStore.currentFile]);
   const draftEditorKey = createMemo(() => `draft-file-${metaStore.currentFile}`);
   const viewedFile = createMemo(() => props.paste?.files[viewFile()]);
+  const viewedLanguage = createMemo(() => viewLanguageOverrides()[viewFile()] ?? viewedFile()?.language ?? "text");
 
   const draftInitialValue = () => untrack(() => pasteStore.files[metaStore.currentFile]?.content ?? "");
 
   const setCurrentFileContent = (content: string) => {
     setPasteStore("files", metaStore.currentFile, "content", content);
+  };
+
+  const setViewedLanguage = (language: string) => {
+    setViewLanguageOverrides((current) => ({ ...current, [viewFile()]: language }));
   };
 
   const setEditorFieldAttrs = (editor: PrismEditor, id: string, name: string) => {
@@ -85,7 +91,13 @@ const IEditor: Component<Props> = (props) => {
     <div class={styles.container}>
       <Switch>
         <Match when={props.paste}>
-          <MetaBarWith paste={props.paste!} currentFile={viewFile()} onFileChange={setViewFile} />
+          <MetaBarWith
+            paste={props.paste!}
+            currentFile={viewFile()}
+            selectedLanguage={viewedLanguage()}
+            onFileChange={setViewFile}
+            onLanguageChange={setViewedLanguage}
+          />
         </Match>
         <Match when={!props.paste}>
           <MetaBar />
@@ -95,7 +107,7 @@ const IEditor: Component<Props> = (props) => {
         <Match when={props.paste}>
           <Editor
             extensions={extensions()}
-            language={viewedFile()?.language ?? "text"}
+            language={viewedLanguage()}
             readOnly={true}
             value={viewedFile()?.content ?? ""}
             onMount={(editor) => setEditorFieldAttrs(editor, "paste-content-viewer", "pasteContent")}
