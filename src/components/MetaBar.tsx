@@ -4,15 +4,11 @@ import { metaStore, pasteStore, setMetaStore, setPasteStore } from "~/stores";
 import ChevronSVG from "~/svgs/Chevron";
 import styles from "../styles/MetaBar.module.scss";
 import FileSelector from "./FileSelector";
-import { findLang, loadLangs, onLangUpdate } from "./SetLang";
+import { findLang, loadLangs, onLangUpdate, onNameUpdate } from "./SetLang";
 
 const MetaBar: Component = () => {
   const setCurrentFile = (index: number) => {
     setMetaStore("currentFile", index);
-  };
-
-  const setCurrentFileName = (name: string) => {
-    setPasteStore("files", metaStore.currentFile, "name", name);
   };
 
   return (
@@ -24,10 +20,12 @@ const MetaBar: Component = () => {
         name="fileName"
         placeholder="Optional filename..."
         value={pasteStore.files[metaStore.currentFile]?.name ?? ""}
-        onInput={(event) => setCurrentFileName(event.currentTarget.value)}
+        onInput={onNameUpdate}
       ></input>
       <div class={styles.langSelectWrapper}>
-        <label class="sr-only" for="paste-file-language">Syntax language</label>
+        <label class="sr-only" for="paste-file-language">
+          Syntax language
+        </label>
         <Select
           id="paste-file-language"
           name="fileLanguage"
