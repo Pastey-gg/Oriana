@@ -31,7 +31,7 @@ const MetaInfo: Component<Props> = (props) => {
     }
 
     let resp: Response;
-    const body = JSON.stringify({ files: newFiles });
+    const body = JSON.stringify({ files: newFiles, password: pasteStore.password });
 
     try {
       resp = await fetch(`${import.meta.env.VITE_API_HOST}/pastes?web=true`, {
@@ -77,7 +77,7 @@ const MetaInfo: Component<Props> = (props) => {
         </small>
         <label class={`${styles.part} header`}>
           Password
-          <input name="password" onchange={(e) => setPasteStore("password", e.target.value)} />
+          <input name="password" type="password" onchange={(e) => setPasteStore("password", e.target.value)} />
         </label>
         <span class={`${styles.part} header`}>
           Expiry

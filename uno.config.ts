@@ -3,6 +3,7 @@ import { defineConfig, presetAttributify } from "unocss";
 export default defineConfig({
   presets: [presetAttributify()],
   rules: [
+    [/^w-([.\d]+)$/, ([_, num]) => ({ width: `${num}rem` })],
     [/^p-([.\d]+)$/, ([_, num]) => ({ padding: `${num}em` })],
     [/^m-([.\d]+)$/, ([_, num]) => ({ margin: `${num}em` })],
     [/^fs-([.\d]+)$/, ([_, num]) => ({ "font-size": `${num}em` })],

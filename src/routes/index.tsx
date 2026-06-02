@@ -2,8 +2,8 @@ import FooterBar from "~/components/Footer";
 import MetaInfo from "~/components/MetaInfo";
 import { pasteStore, setMetaStore, setPasteStore } from "~/stores";
 import type { PasteFileCreate } from "~/types/files";
-import TopBar from "../components/Topbar";
 import IEditor from "../components/ClientEditor";
+import TopBar from "../components/Topbar";
 
 export default function Home() {
   const addFile = () => {

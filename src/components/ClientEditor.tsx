@@ -26,7 +26,11 @@ const ClientEditor: Component<Props> = (props) => {
     <Show
       keyed={true}
       when={editorModule()}
-      fallback={<Show when={loadError()} fallback={<div aria-busy="true" />}><div role="alert">Editor failed to load.</div></Show>}
+      fallback={
+        <Show when={loadError()} fallback={<div aria-busy="true" />}>
+          <div role="alert">Editor failed to load.</div>
+        </Show>
+      }
     >
       {(module) => {
         const LoadedEditor = module.default;

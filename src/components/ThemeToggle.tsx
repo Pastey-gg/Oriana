@@ -44,14 +44,35 @@ export default function ThemeToggle() {
   });
 
   return (
-    <button ref={buttonRef} class={styles.themeButton} type="button" onClick={toggleTheme} aria-label="Switch theme" title="Switch theme">
+    <button
+      ref={buttonRef}
+      class={styles.themeButton}
+      type="button"
+      onClick={toggleTheme}
+      aria-label="Switch theme"
+      title="Switch theme"
+    >
       <span class={styles.darkIcon} aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
           <path d="M20.9 13.4A8 8 0 0 1 10.6 3.1 8.8 8.8 0 1 0 20.9 13.4Z" />
         </svg>
       </span>
       <span class={styles.lightIcon} aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
           <circle cx="12" cy="12" r="4" />
           <path d="M12 2v2" />
           <path d="M12 20v2" />
