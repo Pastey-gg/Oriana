@@ -29,8 +29,10 @@ const MetaBarWith: Component<Props> = (props) => {
         readOnly={true}
       ></input>
       <div class={styles.langSelectWrapper}>
-        <label class="sr-only" for="paste-file-language-view">Syntax language</label>
-        <Show keyed={true} when={props.currentFile + ":" + props.selectedLanguage}>
+        <label class="sr-only" for="paste-file-language-view">
+          Syntax language
+        </label>
+        <Show keyed={true} when={`${props.currentFile}:${props.selectedLanguage}`}>
           <Select
             id="paste-file-language-view"
             name="fileLanguage"
