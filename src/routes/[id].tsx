@@ -82,6 +82,9 @@ export default function ViewPaste() {
       <TopBar></TopBar>
       <div class="wrapper">
         <Switch>
+          <Match when={!paste()} >
+            <div class="inner"><IEditor /></div>
+          </Match>
           <Match when={!gated() && paste()}>
             <div class="inner">
               <IEditor paste={paste()} />
