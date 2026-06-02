@@ -1,5 +1,5 @@
 import { useNavigate } from "@solidjs/router";
-import { Select } from "@thisbeyond/solid-select";
+import { createOptions, Select } from "@thisbeyond/solid-select";
 import { type Component, createSignal, Show } from "solid-js";
 import toast from "solid-toast";
 import { pasteStore, setPasteStore } from "~/stores";
@@ -12,9 +12,33 @@ interface Props {
   onAddFile?: () => void;
 }
 
+interface ExpiryOptsT {
+  name: string;
+  time: number;
+}
+
+const ExpiryOpts: ExpiryOptsT[] = [
+  { name: "5 minutes", time: 5 * 60 * 1000 },
+  { name: "15 minutes", time: 15 * 60 * 1000 },
+  { name: "1 hour", time: 60 * 60 * 1000 },
+  { name: "6 hours", time: 6 * 60 * 60 * 1000 },
+  { name: "12 hours", time: 12 * 60 * 60 * 1000 },
+  { name: "1 day", time: 24 * 60 * 60 * 1000 },
+  { name: "3 days", time: 3 * 24 * 60 * 60 * 1000 },
+  { name: "7 days", time: 7 * 24 * 60 * 60 * 1000 },
+  { name: "14 days", time: 14 * 24 * 60 * 60 * 1000 },
+  { name: "28 days", time: 28 * 24 * 60 * 60 * 1000 },
+];
+
+const format = (value: ExpiryOptsT, type: any, meta: any) => {
+  return value.name;
+};
+
 const MetaInfo: Component<Props> = (props) => {
   const [error, setError] = createSignal<string | null>(null);
   const navigate = useNavigate();
+
+  const loadExpiry = createOptions(ExpiryOpts, { format, extractText: (value: ExpiryOptsT) => value.name });
 
   const postPaste = async () => {
     const newFiles: Array<PasteFileCreate> = [];
@@ -31,7 +55,17 @@ const MetaInfo: Component<Props> = (props) => {
     }
 
     let resp: Response;
-    const body = JSON.stringify({ files: newFiles, password: pasteStore.password });
+
+    // Expiry...
+    const now = new Date();
+    now.setMilliseconds(now.getMilliseconds() + (pasteStore.expiry ?? 0));
+
+    const body = JSON.stringify({
+      files: newFiles,
+      password: pasteStore.password,
+      expires_at: pasteStore.expiry ? now.toISOString() : null,
+      remaining_views: pasteStore.views ?? null,
+    });
 
     try {
       resp = await fetch(`${import.meta.env.VITE_API_HOST}/pastes?web=true`, {
@@ -85,8 +119,8 @@ const MetaInfo: Component<Props> = (props) => {
             id="paste-expiry"
             name="expiry"
             class="customSelect"
-            options={[1, 2, 3, 4]}
-            onChange={(e) => setPasteStore("expiry", e)}
+            {...loadExpiry}
+            onChange={(e) => setPasteStore("expiry", e.time)}
           />
         </span>
         <label class={`${styles.part} header`}>
