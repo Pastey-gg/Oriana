@@ -27,7 +27,7 @@ const PasswordEnter: Component<Props> = (props) => {
       <span class={styles.passwordHeader}>❌ This paste is password protected!</span>
       <span class={styles.innerHeader}>Please enter the password to continue...</span>
       <input type="password" ref={inp}></input>
-      <div class="saveButton w-14" onclick={onSubmit}>
+      <div class="saveButton w-14 error" onclick={onSubmit}>
         Enter
       </div>
     </div>
