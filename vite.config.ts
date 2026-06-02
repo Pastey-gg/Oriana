@@ -1,6 +1,6 @@
+import path from "node:path";
 import { defineConfig, type Plugin } from "vite";
-import { nitroV2Plugin as nitro } from "@solidjs/vite-plugin-nitro-2";
-import { solidStart } from "@solidjs/start/config";
+import solid from "vite-plugin-solid";
 import UnoCSS from "unocss/vite";
 
 const isSolidPrismEditorModule = (id: string) => id.includes("/solid-prism-editor/dist/");
@@ -20,5 +20,10 @@ const prismLanguageSideEffects = (): Plugin => ({
 });
 
 export default defineConfig({
-  plugins: [solidStart(), prismLanguageSideEffects(), UnoCSS(), nitro()],
+  resolve: {
+    alias: {
+      "~": path.resolve(__dirname, "src"),
+    },
+  },
+  plugins: [solid(), prismLanguageSideEffects(), UnoCSS()],
 });

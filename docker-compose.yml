@@ -6,9 +6,5 @@ services:
         VITE_API_HOST: ${VITE_API_HOST:-http://localhost:8080}
     restart: unless-stopped
     mem_limit: 256m
-    environment:
-      NODE_ENV: production
-      HOST: 0.0.0.0
-      PORT: 8181
     ports:
       - "${ORIANA_PORT:-8181}:8181"

@@ -1,12 +1,15 @@
 import "virtual:uno.css";
 import "@thisbeyond/solid-select/style.css";
 
-import { Router } from "@solidjs/router";
-import { FileRoutes } from "@solidjs/start/router";
+import { Route, Router } from "@solidjs/router";
 import { Suspense } from "solid-js";
 import "./styles/root.scss";
 import "./styles/app.scss";
 import { Toaster } from "solid-toast";
+import NotFound from "./routes/404";
+import ViewPaste from "./routes/[id]";
+import ErrorPage from "./routes/error";
+import Home from "./routes/index";
 
 export default function App() {
   return (
@@ -29,7 +32,10 @@ export default function App() {
         </>
       )}
     >
-      <FileRoutes />
+      <Route path="/" component={Home} />
+      <Route path="/404" component={NotFound} />
+      <Route path="/error" component={ErrorPage} />
+      <Route path="/:id" component={ViewPaste} />
     </Router>
   );
 }

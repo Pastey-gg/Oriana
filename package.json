@@ -4,16 +4,13 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "start": "node .output/server/index.mjs",
-    "preview": "node .output/server/index.mjs"
+    "preview": "vite preview --host 0.0.0.0"
   },
   "dependencies": {
     "@solid-primitives/active-element": "^2.1.5",
     "@solid-primitives/clipboard": "^1.6.4",
     "@solid-primitives/lifecycle": "^0.1.2",
     "@solidjs/router": "^0.16.1",
-    "@solidjs/start": "2.0.0-alpha.2",
-    "@solidjs/vite-plugin-nitro-2": "^0.2.0",
     "@thisbeyond/solid-select": "^0.16.0",
     "@unocss/preset-wind4": "^66.5.2",
     "@unocss/reset": "^66.5.2",
@@ -30,6 +27,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.4.15",
     "@types/node": "^25.9.1",
-    "sass": "^1.99.0"
+    "sass": "^1.99.0",
+    "vite-plugin-solid": "^2.11.12"
   }
 }

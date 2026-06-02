@@ -13,15 +13,9 @@ ENV VITE_API_HOST=$VITE_API_HOST
 COPY . .
 RUN npm run build
 
-FROM node:24-alpine AS runner
+FROM nginx:1.29-alpine AS runner
 
-WORKDIR /app
-ENV NODE_ENV=production
-ENV HOST=0.0.0.0
-ENV PORT=8181
-
-COPY --from=builder /app/.output ./.output
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 EXPOSE 8181
-
-CMD ["node", ".output/server/index.mjs"]
