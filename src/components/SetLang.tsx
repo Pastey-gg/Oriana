@@ -14,14 +14,10 @@ const findLangByExt = (name: string): string => {
 
 const onNameUpdate: JSX.ChangeEventHandler<HTMLInputElement, Event> = (event) => {
   const inp = event.currentTarget;
-  let val = inp.value;
+  const val = inp.value;
 
   if (!pasteStore.files[metaStore.currentFile]) {
     return;
-  }
-
-  if (!val) {
-    val = "file.txt";
   }
 
   const lang = findLangByExt(val);
