@@ -2,7 +2,7 @@ import FooterBar from "~/components/Footer";
 import MetaInfo from "~/components/MetaInfo";
 import { pasteStore, setMetaStore, setPasteStore } from "~/stores";
 import type { PasteFileCreate } from "~/types/files";
-import IEditor from "../components/ClientEditor";
+import IEditor from "../components/Editor";
 import TopBar from "../components/Topbar";
 
 export default function Home() {

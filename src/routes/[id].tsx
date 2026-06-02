@@ -4,7 +4,7 @@ import FooterBar from "~/components/Footer";
 import MetaInfoWith from "~/components/MetaInfoWith";
 import PasswordEnter from "~/components/PasswordEnter";
 import type { PasteResponse } from "~/types/pastes";
-import IEditor from "../components/ClientEditor";
+import IEditor from "../components/Editor";
 import TopBar from "../components/Topbar";
 
 interface ParamsT extends Params {
@@ -82,14 +82,11 @@ export default function ViewPaste() {
       <TopBar></TopBar>
       <div class="wrapper">
         <Switch>
-          <Match when={!paste()} >
-            <div class="inner"><IEditor /></div>
-          </Match>
-          <Match when={!gated() && paste()}>
+          <Match when={!gated()}>
             <div class="inner">
-              <IEditor paste={paste()} />
+              <IEditor paste={paste()} loadingPaste={!paste()} />
             </div>
-            <Show when={paste()}>
+            <Show when={paste()} fallback={<div class="flexc" id="metaInfo" aria-busy="true" />}>
               <MetaInfoWith paste={paste()!} />
             </Show>
           </Match>
