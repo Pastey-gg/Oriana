@@ -72,8 +72,16 @@ const MetaInfoWith: ParentComponent<Props> = (props) => {
           </div>
         </div>
         <div class={`${styles.partInfo} flexr`}>
-          <span><b>Size:<span class="blue header"> {getKB()} KB</span></b> </span>
-          <span><b>Total Lines:<span class="blue header"> {getLOC()}</span></b> </span>
+          <span>
+            <b>
+              Size:<span class="blue header"> {getKB()} KB</span>
+            </b>{" "}
+          </span>
+          <span>
+            <b>
+              Total Lines:<span class="blue header"> {getLOC()}</span>
+            </b>{" "}
+          </span>
         </div>
         <div class={styles.partInfo}>
           <div class={`${styles.button} ${styles.copyButton}`} onclick={copyURL}>

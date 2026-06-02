@@ -42,8 +42,18 @@ const IEditor: Component<Props> = (props) => {
     setViewLanguageOverrides((current) => ({ ...current, [viewFile()]: language }));
   };
 
+  const focusEditor = () => {
+    const editor = document.querySelector(".pce-textarea");
+    if (!editor) {
+      return;
+    }
+
+    // @ts-expect-error
+    editor.focus();
+  };
+
   return (
-    <div class={editorStyles.container}>
+    <div class={editorStyles.container} onClick={focusEditor} tabIndex={-1}>
       <Switch>
         <Match when={props.paste}>
           <MetaBarWith
