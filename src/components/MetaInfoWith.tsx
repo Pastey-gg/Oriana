@@ -18,6 +18,9 @@ interface Props {
 const MetaInfoWith: ParentComponent<Props> = (props) => {
   const [dlStatus, setDlStatus] = createSignal(false);
 
+  const getKB = (): number => props.paste.files.reduce((sum, file) => sum + file.character_count, 0) / 1000;
+  const getLOC = (): number => props.paste.files.reduce((sum, file) => sum + file.line_count, 0);
+
   const copyURL = async () => {
     writeClipboard(`${window.location.protocol}//${window.location.host}/${props.paste.id}`);
     toast.success("Copied URL to clipboard!");
@@ -68,6 +71,10 @@ const MetaInfoWith: ParentComponent<Props> = (props) => {
             <span>Pasted via {props.paste.web ? "web" : "api"}</span>
           </div>
         </div>
+        <div class={`${styles.partInfo} flexr`}>
+          <span><b>Size:<span class="blue header"> {getKB()} KB</span></b> </span>
+          <span><b>Total Lines:<span class="blue header"> {getLOC()}</span></b> </span>
+        </div>
         <div class={styles.partInfo}>
           <div class={`${styles.button} ${styles.copyButton}`} onclick={copyURL}>
             <FaSolidCopy />
@@ -87,6 +94,12 @@ const MetaInfoWith: ParentComponent<Props> = (props) => {
             </Switch>
           </div>
         </div>
+        {/* <div class={styles.partInfo}>
+                    <a class={styles.button} href={rawURL()} target="_blank" rel="noreferrer">
+            <FaSolidCode />
+            <span>Generate QR</span>
+          </a>
+        </div> */}
         <div class={styles.partInfo}>
           <span>
             <FaSolidClockFour />

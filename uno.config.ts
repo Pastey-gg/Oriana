@@ -12,6 +12,7 @@ export default defineConfig({
     ["feb", { "font-weight": 700 }],
     ["flex", { display: "flex" }],
     ["flexc", { display: "flex", "flex-direction": "column" }],
+    ["flexr", { display: "flex", "flex-direction": "row!important" }],
     [/^ac-(start|end|center)$/, ([_, align]) => ({ "align-content": `${align}` })],
     [/^ai-(start|end|center)$/, ([_, align]) => ({ "align-items": `${align}` })],
     [/^as-(start|end|center)$/, ([_, align]) => ({ "align-self": `${align}` })],
