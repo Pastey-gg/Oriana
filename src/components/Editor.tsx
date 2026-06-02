@@ -74,6 +74,7 @@ const IEditor: Component<Props> = (props) => {
               value={viewedFile()?.content ?? ""}
               id="paste-content-viewer"
               name="pasteContent"
+              ariaLabel="Paste content viewer"
             />
           </Show>
         </Match>
@@ -86,6 +87,7 @@ const IEditor: Component<Props> = (props) => {
               onUpdate={setCurrentFileContent}
               id="paste-content-editor"
               name="pasteContent"
+              ariaLabel="Paste content editor"
             />
           </Show>
         </Match>

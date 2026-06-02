@@ -21,6 +21,7 @@ const MetaBarWith: Component<Props> = (props) => {
     <div class={styles.topBar}>
       <FileSelector fileCount={props.paste.files.length} currentFile={props.currentFile} onFileChange={props.onFileChange} />
       <input
+        aria-label="File name"
         id="paste-file-name-view"
         name="fileName"
         placeholder="Optional filename..."
@@ -28,6 +29,7 @@ const MetaBarWith: Component<Props> = (props) => {
         readOnly={true}
       ></input>
       <div class={styles.langSelectWrapper}>
+        <label class="sr-only" for="paste-file-language-view">Syntax language</label>
         <Show keyed={true} when={props.currentFile + ":" + props.selectedLanguage}>
           <Select
             id="paste-file-language-view"

@@ -19,6 +19,7 @@ const MetaBar: Component = () => {
     <div class={styles.topBar}>
       <FileSelector fileCount={pasteStore.files.length} currentFile={metaStore.currentFile} onFileChange={setCurrentFile} />
       <input
+        aria-label="File name"
         id="paste-file-name"
         name="fileName"
         placeholder="Optional filename..."
@@ -26,6 +27,7 @@ const MetaBar: Component = () => {
         onInput={(event) => setCurrentFileName(event.currentTarget.value)}
       ></input>
       <div class={styles.langSelectWrapper}>
+        <label class="sr-only" for="paste-file-language">Syntax language</label>
         <Select
           id="paste-file-language"
           name="fileLanguage"

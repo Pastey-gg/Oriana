@@ -80,7 +80,7 @@ const MetaInfo: Component<Props> = (props) => {
           <input name="password" type="password" onchange={(e) => setPasteStore("password", e.target.value)} />
         </label>
         <span class={`${styles.part} header`}>
-          Expiry
+          <label for="paste-expiry">Expiry</label>
           <Select
             id="paste-expiry"
             name="expiry"

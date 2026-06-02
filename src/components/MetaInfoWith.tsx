@@ -1,5 +1,4 @@
 import { writeClipboard } from "@solid-primitives/clipboard";
-import JSZip from "jszip";
 import { createSignal, Match, type ParentComponent, Switch } from "solid-js";
 import toast from "solid-toast";
 import FaSolidClockFour from "~/svgs/Clock";
@@ -32,6 +31,7 @@ const MetaInfoWith: ParentComponent<Props> = (props) => {
     }
 
     setDlStatus(true);
+    const { default: JSZip } = await import("jszip");
     const zip = new JSZip();
 
     for (const file of props.paste.files) {

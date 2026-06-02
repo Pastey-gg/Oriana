@@ -9,6 +9,7 @@ interface Props {
   id: string;
   name: string;
   readOnly?: boolean;
+  ariaLabel?: string;
   onUpdate?: (value: string) => void;
 }
 
@@ -21,6 +22,7 @@ const CodeEditor: Component<Props> = (props) => {
   const setFieldAttrs = (editor: PrismEditor) => {
     editor.textarea.id = props.id;
     editor.textarea.name = props.name;
+    editor.textarea.setAttribute("aria-label", props.ariaLabel ?? "Paste content");
   };
 
   return (
