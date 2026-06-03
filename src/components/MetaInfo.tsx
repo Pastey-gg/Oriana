@@ -7,6 +7,7 @@ import FaRegularCircleQuestion from "~/svgs/Question";
 import type { PasteFileCreate } from "~/types/files";
 import styles from "../styles/MetaInfo.module.scss";
 import ToggleSwitch from "./Toggle";
+import { createShortcut } from "@solid-primitives/keyboard";
 
 interface Props {
   onAddFile?: () => void;
@@ -39,6 +40,11 @@ const MetaInfo: Component<Props> = (props) => {
   const navigate = useNavigate();
 
   const loadExpiry = createOptions(ExpiryOpts, { format, extractText: (value: ExpiryOptsT) => value.name });
+
+  // Ctrl + s == Save Paste
+  createShortcut(["Control", "s"], () => {
+    postPaste();
+  }, {preventDefault: true});
 
   const postPaste = async () => {
     const newFiles: Array<PasteFileCreate> = [];
