@@ -47,9 +47,13 @@ const FooterBar: ParentComponent = () => {
           <b class={styles.header}>Social</b>
           <hr />
           <div class={`${styles.col} ${styles.icons}`}>
-            <FaBrandsGithub />
-            <FaBrandsDiscord />
-            <VsVscode />
+            <a href="https://github.com/Pastey-gg" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <FaBrandsGithub />
+            </a>
+            <a href="https://discord.gg/RAKc3HF" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+              <FaBrandsDiscord />
+            </a>
+              <VsVscode />
           </div>
         </div>
       </div>
