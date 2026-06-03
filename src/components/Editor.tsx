@@ -42,19 +42,17 @@ const IEditor: Component<Props> = (props) => {
     setViewLanguageOverrides((current) => ({ ...current, [viewFile()]: language }));
   };
 
-  const focusEditor = (event) => {
-    const editor = document.querySelector(".pce-textarea");
-    const editorDiv = document.getElementById("editorDiv");
+  const focusEditor = (event: MouseEvent) => {
+    const editor = document.querySelector<HTMLElement>(".pce-textarea");
 
     if (!editor) {
       return;
     }
 
-    if (event.target !== editorDiv) {
-      return
+    if (event.target !== event.currentTarget) {
+      return;
     }
 
-    // @ts-expect-error
     editor.focus();
   };
 
