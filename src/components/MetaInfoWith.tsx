@@ -18,7 +18,20 @@ interface Props {
 const MetaInfoWith: ParentComponent<Props> = (props) => {
   const [dlStatus, setDlStatus] = createSignal(false);
 
-  const getKB = (): number => props.paste.files.reduce((sum, file) => sum + file.character_count, 0) / 1000;
+  const formatFileSize = (): string => {
+    const bytes = props.paste.files.reduce((sum, file) => sum + file.character_count, 0);
+    const units = ["B", "KB", "MB", "GB"];
+    let size = bytes;
+    let unit = 0;
+
+    while (size >= 1024 && unit < units.length - 1) {
+      size /= 1024;
+      unit += 1;
+    }
+
+    const maximumFractionDigits = size < 10 && unit > 0 ? 1 : 0;
+    return size.toLocaleString(undefined, { maximumFractionDigits }) + " " + units[unit];
+  };
   const getLOC = (): number => props.paste.files.reduce((sum, file) => sum + file.line_count, 0);
 
   const copyURL = async () => {
@@ -74,7 +87,7 @@ const MetaInfoWith: ParentComponent<Props> = (props) => {
         <div class={`${styles.partInfo} flexr`}>
           <span>
             <b>
-              Size:<span class="blue header"> {getKB()} KB</span>
+              Size:<span class="blue header"> {formatFileSize()}</span>
             </b>{" "}
           </span>
           <span>
