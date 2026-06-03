@@ -109,6 +109,21 @@ const MetaInfo: Component<Props> = (props) => {
     return "";
   };
 
+  const setAllowedViews = (input: HTMLInputElement) => {
+    if (input.value === "") {
+      setPasteStore("views", undefined);
+      return;
+    }
+
+    const views = Number(input.value);
+    if (!Number.isInteger(views) || views < 1 || views > 1000) {
+      input.value = pasteStore.views?.toString() ?? "";
+      return;
+    }
+
+    setPasteStore("views", views);
+  };
+
   return (
     <div class="flexc" id="metaInfo">
       <div class={`${styles.metaInner} flexc gap-1`}>
@@ -140,8 +155,8 @@ const MetaInfo: Component<Props> = (props) => {
             min="1"
             max="1000"
             step="1"
-            value="0"
-            onChange={(e) => setPasteStore("views", parseInt(e.target.value, 10))}
+            value={pasteStore.views ?? ""}
+            onInput={(e) => setAllowedViews(e.currentTarget)}
           ></input>
         </label>
         <span class={`${styles.part} header`}>
