@@ -39,8 +39,8 @@ const FooterBar: ParentComponent = () => {
           <b class={styles.header}>Links</b>
           <hr />
           <div class={`${styles.col} ${styles.colc}`}>
-            <a href="/">Privacy Policy</a>
-            <a href="/">Terms and Conditions</a>
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms and Conditions</a>
           </div>
         </div>
         <div class={`${styles.col} ${styles.colc}`}>
