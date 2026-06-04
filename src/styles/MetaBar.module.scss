@@ -62,3 +62,19 @@
         padding-right: 1.8em;
     }
 }
+
+@media (max-width: 414px) {
+    .topBar {
+        padding: 0.6em 0.4em;
+        & > input 
+        {
+            padding: 0.4em;
+        }
+        gap: .5em;
+        font-size: 0.8em;
+    }
+
+    .fileSelect {
+        padding: 0.4em;
+    }
+}
