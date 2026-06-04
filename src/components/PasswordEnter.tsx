@@ -1,3 +1,4 @@
+import { createShortcut } from "@solid-primitives/keyboard";
 import type { Component, Setter } from "solid-js";
 import styles from "../styles/Password.module.scss";
 
@@ -8,6 +9,15 @@ interface Props {
 const PasswordEnter: Component<Props> = (props) => {
   // biome-ignore lint/suspicious/noImplicitAnyLet: ...
   let inp;
+
+  // Ctrl + s == Save Paste
+  createShortcut(
+    ["Enter"],
+    () => {
+      onSubmit();
+    },
+    { preventDefault: true },
+  );
 
   const onSubmit = () => {
     if (!inp) {
