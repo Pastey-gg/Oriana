@@ -53,7 +53,7 @@ const FooterBar: ParentComponent = () => {
             <a href="https://discord.gg/RAKc3HF" target="_blank" rel="noopener noreferrer" aria-label="Discord">
               <FaBrandsDiscord />
             </a>
-              <VsVscode />
+            <VsVscode />
           </div>
         </div>
       </div>

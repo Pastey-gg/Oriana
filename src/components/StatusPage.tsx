@@ -5,8 +5,11 @@ import TopBar from "./Topbar";
 
 interface Props {
   title: string;
-  message: string;
+  message: string | Element;
   titleColor: string;
+  alignTop: boolean;
+  textAlign: string | undefined;
+  width: string | undefined;
 }
 
 const StatusPage: Component<Props> = (props) => {
@@ -18,11 +21,14 @@ const StatusPage: Component<Props> = (props) => {
           display: "flex",
           "flex-direction": "column",
           "align-items": "center",
-          "justify-content": "center",
+          "justify-content": props.alignTop ? "flex-start" : "center",
           flex: "1",
           gap: "1rem",
-          "text-align": "center",
+          // @ts-expect-error
+          "text-align": props.textAlign ?? "center",
           padding: "2rem",
+          width: props.width ?? "100%",
+          "align-self": "center",
         }}
       >
         <h1 class="header" style={{ margin: "0", "font-size": "4rem", color: props.titleColor }}>

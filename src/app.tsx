@@ -6,10 +6,12 @@ import { Suspense } from "solid-js";
 import "./styles/root.scss";
 import "./styles/app.scss";
 import { Toaster } from "solid-toast";
-import NotFound from "./routes/404";
 import ViewPaste from "./routes/[id]";
+import NotFound from "./routes/404";
 import ErrorPage from "./routes/error";
 import Home from "./routes/index";
+import PrivacyPage from "./routes/privacy";
+import TermsPage from "./routes/terms";
 
 export default function App() {
   return (
@@ -36,6 +38,8 @@ export default function App() {
       <Route path="/404" component={NotFound} />
       <Route path="/error" component={ErrorPage} />
       <Route path="/:id" component={ViewPaste} />
+      <Route path="/terms" component={TermsPage} />
+      <Route path="/privacy" component={PrivacyPage} />
     </Router>
   );
 }

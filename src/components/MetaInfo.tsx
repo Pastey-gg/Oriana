@@ -42,9 +42,13 @@ const MetaInfo: Component<Props> = (props) => {
   const loadExpiry = createOptions(ExpiryOpts, { format, extractText: (value: ExpiryOptsT) => value.name });
 
   // Ctrl + s == Save Paste
-  createShortcut(["Control", "s"], () => {
-    postPaste();
-  }, {preventDefault: true});
+  createShortcut(
+    ["Control", "s"],
+    () => {
+      postPaste();
+    },
+    { preventDefault: true },
+  );
 
   const postPaste = async () => {
     const newFiles: Array<PasteFileCreate> = [];
