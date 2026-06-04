@@ -1,6 +1,6 @@
 import { Select } from "@thisbeyond/solid-select";
 import type { Component } from "solid-js";
-import { metaStore, pasteStore, setMetaStore, setPasteStore } from "~/stores";
+import { metaStore, pasteStore, setMetaStore } from "~/stores";
 import ChevronSVG from "~/svgs/Chevron";
 import styles from "../styles/MetaBar.module.scss";
 import FileSelector from "./FileSelector";

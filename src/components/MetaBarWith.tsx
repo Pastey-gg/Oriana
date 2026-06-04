@@ -5,7 +5,6 @@ import type { PasteResponse } from "~/types/pastes";
 import styles from "../styles/MetaBar.module.scss";
 import FileSelector from "./FileSelector";
 import { loadLangs, resolveLang } from "./SetLang";
-import { pasteStore } from "~/stores";
 
 interface Props {
   paste: PasteResponse;

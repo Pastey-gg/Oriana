@@ -37,7 +37,7 @@ const onLangUpdate = (value: LangObj) => {
 };
 
 // biome-ignore lint/suspicious/noExplicitAny: ...
-const format = (value: LangObj, type: any, meta: any) => {
+const format = (value: LangObj, _type: any, _meta: any) => {
   return (
     <div class="langIn">
       {<value.icon />}

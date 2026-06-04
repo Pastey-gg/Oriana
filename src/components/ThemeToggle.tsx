@@ -54,6 +54,8 @@ export default function ThemeToggle() {
     >
       <span class={styles.darkIcon} aria-hidden="true">
         <svg
+          aria-hidden="true"
+          role="presentation"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -66,6 +68,8 @@ export default function ThemeToggle() {
       </span>
       <span class={styles.lightIcon} aria-hidden="true">
         <svg
+          aria-hidden="true"
+          role="presentation"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"

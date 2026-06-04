@@ -1,4 +1,4 @@
-import { createMemo, type Component } from "solid-js";
+import { type Component, createMemo } from "solid-js";
 import { Editor, type Extension, type PrismEditor } from "solid-prism-editor";
 import { defaultCommands } from "solid-prism-editor/commands";
 

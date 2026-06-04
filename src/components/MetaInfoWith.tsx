@@ -30,7 +30,7 @@ const MetaInfoWith: ParentComponent<Props> = (props) => {
     }
 
     const maximumFractionDigits = size < 10 && unit > 0 ? 1 : 0;
-    return size.toLocaleString(undefined, { maximumFractionDigits }) + " " + units[unit];
+    return `${size.toLocaleString(undefined, { maximumFractionDigits })} ${units[unit]}`;
   };
   const getLOC = (): number => props.paste.files.reduce((sum, file) => sum + file.line_count, 0);
 
