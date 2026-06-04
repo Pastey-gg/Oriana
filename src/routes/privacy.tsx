@@ -1,4 +1,4 @@
-import StatusPage from "~/components/StatusPage";
+import ContentPage from "~/components/ContentPage";
 
 export default function PrivacyPage() {
   //@ts-expect-error
@@ -65,7 +65,7 @@ export default function PrivacyPage() {
   );
 
   return (
-    <StatusPage
+    <ContentPage
       title="Privacy Policy"
       message={message}
       titleColor="var(--success)"

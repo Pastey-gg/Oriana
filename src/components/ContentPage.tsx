@@ -7,12 +7,12 @@ interface Props {
   title: string;
   message: string | Element;
   titleColor: string;
-  alignTop: boolean;
-  textAlign: string | undefined;
-  width: string | undefined;
+  alignTop?: boolean;
+  textAlign?: string;
+  width?: string;
 }
 
-const StatusPage: Component<Props> = (props) => {
+const ContentPage: Component<Props> = (props) => {
   return (
     <main>
       <TopBar />
@@ -44,4 +44,4 @@ const StatusPage: Component<Props> = (props) => {
   );
 };
 
-export default StatusPage;
+export default ContentPage;

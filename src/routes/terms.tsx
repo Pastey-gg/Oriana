@@ -1,4 +1,4 @@
-import StatusPage from "~/components/StatusPage";
+import ContentPage from "~/components/ContentPage";
 
 export default function TermsPage() {
   //@ts-expect-error
@@ -58,7 +58,7 @@ export default function TermsPage() {
   );
 
   return (
-    <StatusPage
+    <ContentPage
       title="Terms and Conditions"
       message={message}
       titleColor="var(--success)"
