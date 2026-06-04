@@ -1,3 +1,4 @@
+import { createShortcut } from "@solid-primitives/keyboard";
 import { useNavigate } from "@solidjs/router";
 import { createOptions, Select } from "@thisbeyond/solid-select";
 import { type Component, createSignal, Show } from "solid-js";
@@ -7,7 +8,6 @@ import FaRegularCircleQuestion from "~/svgs/Question";
 import type { PasteFileCreate } from "~/types/files";
 import styles from "../styles/MetaInfo.module.scss";
 import ToggleSwitch from "./Toggle";
-import { createShortcut } from "@solid-primitives/keyboard";
 
 interface Props {
   onAddFile?: () => void;

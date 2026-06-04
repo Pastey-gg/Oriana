@@ -8,6 +8,7 @@ import "./styles/app.scss";
 import { Toaster } from "solid-toast";
 import ViewPaste from "./routes/[id]";
 import NotFound from "./routes/404";
+import DocsPage from "./routes/docs";
 import ErrorPage from "./routes/error";
 import Home from "./routes/index";
 import PrivacyPage from "./routes/privacy";
@@ -40,6 +41,7 @@ export default function App() {
       <Route path="/:id" component={ViewPaste} />
       <Route path="/terms" component={TermsPage} />
       <Route path="/privacy" component={PrivacyPage} />
+      <Route path="/docs" component={DocsPage} />
     </Router>
   );
 }
