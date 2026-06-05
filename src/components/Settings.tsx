@@ -11,7 +11,7 @@ interface Props {
 
 const SettingsModal: Component<Props> = (props) => {
   const fontSizes = ["small", "default", "large"];
-  const fonts = ["jetbrains", "fira", "ibmplex", "notosans", "roboto", "sourcecodepro", "monospace"];
+  const fonts = ["jetbrains", "fira", "ibmplex", "notosans", "roboto", "sourcecodepro", "ubuntu", "monospace"];
 
   const formatFont = (value: string, type: any, meta: any) => {
     return <span class={`fontSize-${metaStore.fontSize ?? "default"} font-${value}`}>{value}</span>;
