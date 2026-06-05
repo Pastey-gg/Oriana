@@ -24,6 +24,20 @@ const CodeEditor: Component<Props> = (props) => {
     editor.textarea.id = props.id;
     editor.textarea.name = props.name;
     editor.textarea.setAttribute("aria-label", props.ariaLabel ?? "Paste content");
+
+    editor.textarea.addEventListener("paste", () => {
+      const winY = window.scrollY;
+      const textY = editor.textarea.scrollTop;
+
+      const parent = document.getElementById("editorDiv");
+      const parentY = parent ? parent.scrollTop : 0;
+
+      requestAnimationFrame(() => {
+        window.scrollTo(window.scrollX, winY);
+        editor.textarea.scrollTop = textY;
+        if (parent) parent.scrollTop = parentY;
+      });
+    });
   };
 
   return (
