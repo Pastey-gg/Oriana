@@ -1,4 +1,4 @@
-import { type Params, useNavigate, useParams } from "@solidjs/router";
+import { type Params, useLocation, useNavigate, useParams } from "@solidjs/router";
 import { createEffect, createSignal, Match, on, Show, Switch } from "solid-js";
 import FooterBar from "~/components/Footer";
 import MetaInfoWith from "~/components/MetaInfoWith";
@@ -11,12 +11,37 @@ interface ParamsT extends Params {
   id: string;
 }
 
+type PasteRouteState = {
+  paste?: PasteResponse;
+};
+
 export default function ViewPaste() {
+  const location = useLocation();
   const navigate = useNavigate();
   const params: ParamsT = useParams();
   const [gated, setGated] = createSignal(false);
   const [paste, setPaste] = createSignal<PasteResponse | undefined>(undefined);
   const [password, setPassword] = createSignal<string | null>(null);
+
+  const useCreatedPaste = () => {
+    const freshPaste = (location.state as PasteRouteState | undefined)?.paste;
+    if (!freshPaste || freshPaste.id !== params.id) {
+      return false;
+    }
+
+    const storageKey = `oriana:safety-token:${params.id}`;
+    const safetyToken = typeof window !== "undefined" ? sessionStorage.getItem(storageKey) : null;
+    if (!safetyToken) {
+      return false;
+    }
+
+    setPaste(freshPaste);
+    if (typeof window !== "undefined") {
+      sessionStorage.removeItem(storageKey);
+    }
+
+    return true;
+  };
 
   const fetchPaste = async () => {
     // TODO: Error stuffs...
@@ -66,6 +91,10 @@ export default function ViewPaste() {
   createEffect(
     on([password, paste], async () => {
       if (paste()) {
+        return;
+      }
+
+      if (useCreatedPaste()) {
         return;
       }
 

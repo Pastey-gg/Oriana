@@ -10,3 +10,7 @@ export type PasteResponse = {
   files: Array<PasteFileResponse>;
   web: boolean;
 };
+
+export type CreatePasteResponse = PasteResponse & {
+  safety_token: string;
+};

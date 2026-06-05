@@ -6,6 +6,7 @@ import toast from "solid-toast";
 import { pasteStore, setPasteStore } from "~/stores";
 import FaRegularCircleQuestion from "~/svgs/Question";
 import type { PasteFileCreate } from "~/types/files";
+import type { CreatePasteResponse } from "~/types/pastes";
 import styles from "../styles/MetaInfo.module.scss";
 import ToggleSwitch from "./Toggle";
 
@@ -101,11 +102,11 @@ const MetaInfo: Component<Props> = (props) => {
       return;
     }
 
-    const data = await resp.json();
+    const data = (await resp.json()) as CreatePasteResponse;
     if (typeof window !== "undefined") {
       sessionStorage.setItem(`oriana:safety-token:${data.id}`, data.safety_token);
     }
-    navigate(`/${data.id}`);
+    navigate(`/${data.id}`, { state: { paste: data } });
   };
 
   const showError = () => {
