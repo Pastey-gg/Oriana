@@ -6,6 +6,7 @@ import type { PasteFileCreate } from "~/types/files";
 import styles from "../styles/Topbar.module.scss";
 import SettingsModal from "./Settings";
 import ThemeToggle from "./ThemeToggle";
+import FaSolidCog from "~/svgs/cog";
 
 interface Props {
   id?: string;
@@ -22,7 +23,6 @@ const NavBar: ParentComponent<Props> = (props) => {
 
   return (
     <div class={styles.container}>
-      <span onclick={() => setModalOpen(true)}>Open</span>
       <SettingsModal isOpen={modalOpen()} onClose={() => setModalOpen(false)} />
       <div class={styles.topRow}>
         <A
@@ -39,6 +39,7 @@ const NavBar: ParentComponent<Props> = (props) => {
           <span>pastey.gg</span>
         </A>
         <ThemeToggle />
+        <span class={styles.settings} onclick={() => setModalOpen(true)}><FaSolidCog /></span>
       </div>
       <div class={styles.metaRow}>{props.children}</div>
     </div>

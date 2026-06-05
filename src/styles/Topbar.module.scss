@@ -19,3 +19,14 @@
 .metaRow {
     display: flex;
 }
+
+.settings {
+    margin-left: auto;
+    margin-right: 1.4rem;
+    padding: .6rem 0 0 0;
+    color: var(--secondary-color);
+}
+
+.settings:hover {
+    cursor: pointer;
+}
