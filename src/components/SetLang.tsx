@@ -1,6 +1,6 @@
 import { createOptions } from "@thisbeyond/solid-select";
 import type { JSX } from "solid-js";
-import { metaStore, pasteStore, setPasteStore } from "~/stores";
+import { draftStore, pasteStore, setPasteStore } from "~/stores";
 import TextIcon from "~/svgs/langs/text";
 import { EXTS, LANGS, type LangObj } from "~/utils";
 
@@ -16,16 +16,16 @@ const onNameUpdate: JSX.ChangeEventHandler<HTMLInputElement, Event> = (event) =>
   const inp = event.currentTarget;
   const val = inp.value;
 
-  if (!pasteStore.files[metaStore.currentFile]) {
+  if (!pasteStore.files[draftStore.currentFile]) {
     return;
   }
 
   const lang = findLangByExt(val);
-  setPasteStore("files", metaStore.currentFile, (prev) => ({ language: lang || prev.language, name: val }));
+  setPasteStore("files", draftStore.currentFile, (prev) => ({ language: lang || prev.language, name: val }));
 };
 
 const onLangUpdate = (value: LangObj) => {
-  if (!pasteStore.files[metaStore.currentFile]) {
+  if (!pasteStore.files[draftStore.currentFile]) {
     return;
   }
 
@@ -33,7 +33,7 @@ const onLangUpdate = (value: LangObj) => {
     return;
   }
 
-  setPasteStore("files", metaStore.currentFile, { language: value.name });
+  setPasteStore("files", draftStore.currentFile, { language: value.name });
 };
 
 // biome-ignore lint/suspicious/noExplicitAny: ...
@@ -60,6 +60,6 @@ const resolveLang = (language?: string): LangObj => {
   return lang || { name: "text", icon: TextIcon };
 };
 
-const findLang = (): LangObj => resolveLang(pasteStore.files[metaStore.currentFile].language);
+const findLang = (): LangObj => resolveLang(pasteStore.files[draftStore.currentFile]?.language);
 
 export { findLang, findLangByExt, format, loadLangs, onLangUpdate, onNameUpdate, resolveLang };

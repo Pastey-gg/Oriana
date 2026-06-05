@@ -7,8 +7,11 @@ export interface PasteStore {
   views?: number;
 }
 
-export interface MetaStore {
+export interface DraftStore {
   currentFile: number;
+}
+
+export interface MetaStore {
   font: string;
   fontSize: string;
   wordWrap: boolean;

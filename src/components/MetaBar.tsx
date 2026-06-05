@@ -1,6 +1,6 @@
 import { Select } from "@thisbeyond/solid-select";
 import type { Component } from "solid-js";
-import { metaStore, pasteStore, setMetaStore } from "~/stores";
+import { draftStore, pasteStore, setDraftStore } from "~/stores";
 import ChevronSVG from "~/svgs/Chevron";
 import styles from "../styles/MetaBar.module.scss";
 import FileSelector from "./FileSelector";
@@ -8,18 +8,18 @@ import { findLang, loadLangs, onLangUpdate, onNameUpdate } from "./SetLang";
 
 const MetaBar: Component = () => {
   const setCurrentFile = (index: number) => {
-    setMetaStore("currentFile", index);
+    setDraftStore("currentFile", index);
   };
 
   return (
     <div class={styles.topBar}>
-      <FileSelector fileCount={pasteStore.files.length} currentFile={metaStore.currentFile} onFileChange={setCurrentFile} />
+      <FileSelector fileCount={pasteStore.files.length} currentFile={draftStore.currentFile} onFileChange={setCurrentFile} />
       <input
         aria-label="File name"
         id="paste-file-name"
         name="fileName"
         placeholder="Optional filename..."
-        value={pasteStore.files[metaStore.currentFile]?.name ?? ""}
+        value={pasteStore.files[draftStore.currentFile]?.name ?? ""}
         onInput={onNameUpdate}
       ></input>
       <div class={styles.langSelectWrapper}>

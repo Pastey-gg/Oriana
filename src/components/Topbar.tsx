@@ -1,12 +1,12 @@
 import { A, useNavigate } from "@solidjs/router";
 import { createSignal, type ParentComponent } from "solid-js";
-import { setPasteStore } from "~/stores";
+import { setDraftStore, setPasteStore } from "~/stores";
+import FaSolidCog from "~/svgs/cog";
 import Logo from "~/svgs/Logo";
 import type { PasteFileCreate } from "~/types/files";
 import styles from "../styles/Topbar.module.scss";
 import SettingsModal from "./Settings";
 import ThemeToggle from "./ThemeToggle";
-import FaSolidCog from "~/svgs/cog";
 
 interface Props {
   id?: string;
@@ -17,7 +17,13 @@ const NavBar: ParentComponent<Props> = (props) => {
   const [modalOpen, setModalOpen] = createSignal(false);
 
   const goHome = () => {
-    setPasteStore(() => ({ files: [{} as PasteFileCreate], password: undefined, expiry: undefined, view: undefined }));
+    setPasteStore(() => ({
+      files: [{ content: "" } as PasteFileCreate],
+      password: undefined,
+      expiry: undefined,
+      views: undefined,
+    }));
+    setDraftStore("currentFile", 0);
     navigate("/");
   };
 
@@ -39,7 +45,9 @@ const NavBar: ParentComponent<Props> = (props) => {
           <span>pastey.gg</span>
         </A>
         <ThemeToggle />
-        <span class={styles.settings} onclick={() => setModalOpen(true)}><FaSolidCog /></span>
+        <span class={styles.settings} onclick={() => setModalOpen(true)}>
+          <FaSolidCog />
+        </span>
       </div>
       <div class={styles.metaRow}>{props.children}</div>
     </div>

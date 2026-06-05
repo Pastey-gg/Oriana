@@ -1,14 +1,17 @@
 import { makePersisted } from "@solid-primitives/storage";
 import { createStore } from "solid-js/store";
-import type { MetaStore, PasteStore } from "./types/stores";
+import type { DraftStore, MetaStore, PasteStore } from "./types/stores";
 
 export const [pasteStore, setPasteStore] = createStore<PasteStore>({
   files: [{ content: "" }],
 });
 
+export const [draftStore, setDraftStore] = createStore<DraftStore>({
+  currentFile: 0,
+});
+
 export const [metaStore, setMetaStore] = makePersisted(
   createStore<MetaStore>({
-    currentFile: 0,
     font: "monospace",
     fontSize: "default",
     wordWrap: false,

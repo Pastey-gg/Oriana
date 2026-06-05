@@ -6,7 +6,7 @@ import { type Component, createMemo, createSignal, Match, onCleanup, onMount, Sh
 import { copyButton } from "solid-prism-editor/copy-button";
 import { indentGuides } from "solid-prism-editor/guides";
 import { type EditorTheme, loadTheme, registerTheme } from "solid-prism-editor/themes";
-import { metaStore, pasteStore, setPasteStore } from "~/stores";
+import { draftStore, pasteStore, setPasteStore } from "~/stores";
 import type { PasteResponse } from "~/types/pastes";
 import editorStyles from "../styles/Editor.module.scss";
 import metaBarStyles from "../styles/MetaBar.module.scss";
@@ -59,17 +59,17 @@ const IEditor: Component<Props> = (props) => {
   const extensions = createMemo(() => [copyButton(), indentGuides()]);
   const [viewFile, setViewFile] = createSignal(0);
   const [viewLanguageOverrides, setViewLanguageOverrides] = createSignal<Record<number, string>>({});
-  const draftFile = createMemo(() => pasteStore.files[metaStore.currentFile]);
-  const draftEditorKey = createMemo(() => `draft-file-${metaStore.currentFile}`);
+  const draftFile = createMemo(() => pasteStore.files[draftStore.currentFile]);
+  const draftEditorKey = createMemo(() => `draft-file-${draftStore.currentFile}`);
   const viewedFile = createMemo(() => props.paste?.files[viewFile()]);
   const viewedLanguage = createMemo(() => viewLanguageOverrides()[viewFile()] ?? viewedFile()?.language ?? "text");
   const viewerEditorKey = createMemo(() => `viewer-${props.paste?.id ?? "loading"}-${viewFile()}`);
   const isViewingPaste = createMemo(() => props.loadingPaste || Boolean(props.paste));
 
-  const draftInitialValue = () => untrack(() => pasteStore.files[metaStore.currentFile]?.content ?? "");
+  const draftInitialValue = () => untrack(() => pasteStore.files[draftStore.currentFile]?.content ?? "");
 
   const setCurrentFileContent = (content: string) => {
-    setPasteStore("files", metaStore.currentFile, "content", content);
+    setPasteStore("files", draftStore.currentFile, "content", content);
   };
 
   const setViewedLanguage = (language: string) => {
