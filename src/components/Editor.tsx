@@ -76,22 +76,22 @@ const IEditor: Component<Props> = (props) => {
     setViewLanguageOverrides((current) => ({ ...current, [viewFile()]: language }));
   };
 
-  const focusEditor = (event: MouseEvent) => {
-    const editor = document.querySelector<HTMLElement>(".pce-textarea");
+  // const focusEditor = (event: MouseEvent) => {
+  //   const editor = document.querySelector<HTMLElement>(".pce-textarea");
 
-    if (!editor) {
-      return;
-    }
+  //   if (!editor) {
+  //     return;
+  //   }
 
-    if (event.target !== event.currentTarget) {
-      return;
-    }
+  //   if (event.target !== event.currentTarget) {
+  //     return;
+  //   }
 
-    editor.focus();
-  };
+  //   editor.focus();
+  // };
 
   return (
-    <div class={editorStyles.container} onClick={focusEditor} tabIndex={-1} id="editorDiv">
+    <div class={editorStyles.container} tabIndex={-1} id="editorDiv">
       <EditorThemeLoader />
       <Switch>
         <Match when={props.paste}>

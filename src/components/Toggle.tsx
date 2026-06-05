@@ -1,17 +1,23 @@
 import ToggleOneSVG from "~/svgs/ToggleOne";
 import "../styles/toggle.scss";
+import type { Component } from "solid-js";
 import ToggleTwoSVG from "~/svgs/ToggleTwo";
 
 interface Props {
   checked: boolean;
+  ontoggle: (value: boolean) => void;
 }
 
-export default function ToggleSwitch(props: Props) {
+const ToggleSwitch: Component<Props> = (props: Props) => {
   const checked = () => props.checked;
+
+  const doToggle = () => {
+    props.ontoggle(!checked());
+  };
 
   return (
     <label class="switch">
-      <input type="checkbox" checked={checked()} />
+      <input type="checkbox" checked={checked()} onchange={doToggle} />
 
       <div class="slider">
         <div class="circle">
@@ -21,4 +27,6 @@ export default function ToggleSwitch(props: Props) {
       </div>
     </label>
   );
-}
+};
+
+export default ToggleSwitch;

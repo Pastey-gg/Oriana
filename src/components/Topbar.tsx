@@ -1,9 +1,10 @@
 import { A, useNavigate } from "@solidjs/router";
-import type { ParentComponent } from "solid-js";
+import { createSignal, type ParentComponent } from "solid-js";
 import { setPasteStore } from "~/stores";
 import Logo from "~/svgs/Logo";
 import type { PasteFileCreate } from "~/types/files";
 import styles from "../styles/Topbar.module.scss";
+import SettingsModal from "./Settings";
 import ThemeToggle from "./ThemeToggle";
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
 
 const NavBar: ParentComponent<Props> = (props) => {
   const navigate = useNavigate();
+  const [modalOpen, setModalOpen] = createSignal(false);
 
   const goHome = () => {
     setPasteStore(() => ({ files: [{} as PasteFileCreate], password: undefined, expiry: undefined, view: undefined }));
@@ -20,6 +22,8 @@ const NavBar: ParentComponent<Props> = (props) => {
 
   return (
     <div class={styles.container}>
+      <span onclick={() => setModalOpen(true)}>Open</span>
+      <SettingsModal isOpen={modalOpen()} onClose={() => setModalOpen(false)} />
       <div class={styles.topRow}>
         <A
           href="/"

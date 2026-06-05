@@ -1,6 +1,7 @@
 import { type Component, createMemo } from "solid-js";
 import { Editor, type Extension, type PrismEditor } from "solid-prism-editor";
 import { defaultCommands } from "solid-prism-editor/commands";
+import { metaStore } from "~/stores";
 
 interface Props {
   extensions: Extension[];
@@ -33,6 +34,8 @@ const CodeEditor: Component<Props> = (props) => {
       value={props.value}
       onUpdate={props.onUpdate}
       onMount={setFieldAttrs}
+      class={`font-${metaStore.font ?? "monospace"} fontSize-${metaStore.fontSize ?? "default"}${metaStore.ligatures ? " ligs" : ""}`}
+      wordWrap={metaStore.wordWrap}
     />
   );
 };

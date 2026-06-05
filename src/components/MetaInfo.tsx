@@ -131,7 +131,7 @@ const MetaInfo: Component<Props> = (props) => {
   return (
     <div class="flexc" id="metaInfo">
       <div class={`${styles.metaInner} flexc gap-1`}>
-        <small class={`${styles.smallText} header`}>
+        <small class={`smallText header tint`}>
           <span class="blue">*</span> All settings are optional.
         </small>
         <label class={`${styles.part} header`}>
@@ -150,7 +150,7 @@ const MetaInfo: Component<Props> = (props) => {
         </span>
         <label class={`${styles.part} header`}>
           Allowed Views
-          <small class={`${styles.smallText}`}>
+          <small class="smallText tint">
             <FaRegularCircleQuestion /> Only allow up to N amount of views
           </small>
           <input
@@ -165,7 +165,7 @@ const MetaInfo: Component<Props> = (props) => {
         </label>
         <span class={`${styles.part} header`}>
           Disable Safety scanning?
-          <small class={`${styles.smallText}`}>
+          <small class="smallText tint">
             <FaRegularCircleQuestion /> Disables scanning the paste for tokens.
           </small>
           <ToggleSwitch checked={false} />

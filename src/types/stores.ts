@@ -9,4 +9,10 @@ export interface PasteStore {
 
 export interface MetaStore {
   currentFile: number;
+  font: string;
+  fontSize: string;
+  wordWrap: boolean;
+  ligatures: boolean;
+  guidelines: boolean;
+  lineNumbers: boolean;
 }

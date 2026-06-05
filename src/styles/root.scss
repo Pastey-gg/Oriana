@@ -12,6 +12,82 @@
     font-display: swap;
 }
 
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/JetBrainsMono_V.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fira Mono";
+  src: url("/FiraMono-Regular.ttf") format("truetype-variations");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("/IBMPlexMono-Regular.ttf") format("truetype-variations");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Sans Mono";
+  src: url("/NotoSansMono.ttf") format("truetype-variations");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto Mono";
+  src: url("/RobotoMono.ttf") format("truetype-variations");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Code Pro";
+  src: url("/SourceCodePro.ttf") format("truetype-variations");
+  font-display: swap;
+}
+
+.font-jetbrains {
+  font-family: "JetBrains Mono", monospace !important;
+}
+
+.font-fira {
+  font-family: "Fira Mono", monospace !important;
+}
+
+.font-ibmplex {
+  font-family: "IBM Plex Mono", monospace !important;
+}
+
+.font-notosans {
+  font-family: "Noto Sans Mono", monospace !important;
+}
+
+.font-roboto {
+  font-family: "Roboto Mono", monospace !important;
+}
+
+.font-sourcecodepro {
+  font-family: "Source Code Pro", monospace !important;
+}
+
+.font-monospace {
+  font-family: monospace!important;
+}
+
+.fontSize-small {
+  font-size: 11px!important;
+}
+
+.fontSize-default {
+  font-size: 13px!important;
+}
+
+.fontSize-large {
+  font-size: 15px!important;
+}
+
 :root {
     --primary-color: #0F172A;
     --primary-bg: #F8FAFC;
