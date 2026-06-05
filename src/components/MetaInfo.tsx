@@ -37,6 +37,7 @@ const format = (value: ExpiryOptsT, _type: unknown, _meta: unknown) => {
 
 const MetaInfo: Component<Props> = (props) => {
   const [error, setError] = createSignal<string | null>(null);
+  const [disableSafetyScanning, setDisableSafetyScanning] = createSignal(false);
   const navigate = useNavigate();
 
   const loadExpiry = createOptions(ExpiryOpts, { format, extractText: (value: ExpiryOptsT) => value.name });
@@ -168,7 +169,7 @@ const MetaInfo: Component<Props> = (props) => {
           <small class="smallText tint">
             <FaRegularCircleQuestion /> Disables scanning the paste for tokens.
           </small>
-          <ToggleSwitch checked={false} />
+          <ToggleSwitch checked={disableSafetyScanning()} ontoggle={setDisableSafetyScanning} />
         </span>
         <div class="saveButton" onclick={postPaste}>
           Save
