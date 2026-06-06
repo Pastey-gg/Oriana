@@ -60,7 +60,9 @@ const FooterBar: ParentComponent = () => {
             <a href="https://discord.gg/RAKc3HF" target="_blank" rel="noopener noreferrer" aria-label="Discord">
               <FaBrandsDiscord />
             </a>
-            <VsVscode />
+            <a href="https://marketplace.visualstudio.com/items?itemName=pastey-gg.pastey" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+              <VsVscode />
+            </a>
           </div>
         </div>
       </div>
