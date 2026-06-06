@@ -20,13 +20,46 @@
     display: flex;
 }
 
-.settings {
+.controls {
     margin-left: auto;
     margin-right: 1.4rem;
-    padding: .6rem 0 0 0;
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+}
+
+.separator {
+    width: 1px;
+    height: 1.5rem;
+    background: var(--secondary-color--10);
+}
+
+.settings {
+    width: 1.75rem;
+    height: 1.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
     color: var(--secondary-color);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    cursor: pointer;
 }
 
 .settings:hover {
-    cursor: pointer;
+    color: var(--primary-color);
+    background: var(--field-bg);
+    border-color: var(--secondary-color--10);
+}
+
+.settings:focus-visible {
+    outline: 2px solid var(--success--40);
+    outline-offset: 2px;
+}
+
+.settings svg {
+    width: .95rem;
+    height: .95rem;
 }

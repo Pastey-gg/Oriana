@@ -44,10 +44,19 @@ const NavBar: ParentComponent<Props> = (props) => {
           </span>
           <span>pastey.gg</span>
         </A>
-        <ThemeToggle />
-        <span class={styles.settings} onclick={() => setModalOpen(true)}>
-          <FaSolidCog />
-        </span>
+        <div class={styles.controls}>
+          <ThemeToggle />
+          <span class={styles.separator} aria-hidden="true" />
+          <button
+            class={styles.settings}
+            type="button"
+            onClick={() => setModalOpen(true)}
+            aria-label="Open settings"
+            title="Open settings"
+          >
+            <FaSolidCog />
+          </button>
+        </div>
       </div>
       <div class={styles.metaRow}>{props.children}</div>
     </div>

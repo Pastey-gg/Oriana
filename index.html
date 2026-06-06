@@ -34,13 +34,15 @@
       }
     </style>
     <script>
-      let theme = localStorage.getItem("theme");
+      const themePreference = localStorage.getItem("theme") || "system";
+      let theme = themePreference;
 
-      if (!theme) {
+      if (themePreference === "system") {
         theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       }
 
       document.documentElement.setAttribute("data-theme", theme);
+      document.documentElement.setAttribute("data-theme-preference", themePreference);
       document.documentElement.style.colorScheme = theme;
     </script>
   </head>

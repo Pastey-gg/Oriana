@@ -1,5 +1,5 @@
 import { createOptions, Select } from "@thisbeyond/solid-select";
-import { type Component, createSignal } from "solid-js";
+import { type Component } from "solid-js";
 import { metaStore, setMetaStore } from "~/stores";
 import Modal from "./Modal";
 import ToggleSwitch from "./Toggle";
