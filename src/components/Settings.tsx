@@ -1,5 +1,5 @@
 import { createOptions, Select } from "@thisbeyond/solid-select";
-import { type Component } from "solid-js";
+import type { Component } from "solid-js";
 import { metaStore, setMetaStore } from "~/stores";
 import Modal from "./Modal";
 import ToggleSwitch from "./Toggle";
@@ -13,12 +13,12 @@ const SettingsModal: Component<Props> = (props) => {
   const fontSizes = ["small", "default", "large"];
   const fonts = ["jetbrains", "fira", "ibmplex", "notosans", "roboto", "sourcecodepro", "ubuntu", "monospace"];
 
-  const formatFont = (value: string, type: any, meta: any) => {
+  const formatFont = (value: string) => {
     return <span class={`fontSize-${metaStore.fontSize ?? "default"} font-${value}`}>{value}</span>;
   };
   const loadFonts = createOptions(fonts, { format: formatFont, extractText: (value: string) => value });
 
-  const formatFontSize = (value: string, type: any, meta: any) => {
+  const formatFontSize = (value: string) => {
     return <span class={`fontSize-${value} font-${metaStore.font ?? "monospace"}`}>{value}</span>;
   };
   const loadFontSize = createOptions(fontSizes, { format: formatFontSize, extractText: (value: string) => value });

@@ -32,7 +32,7 @@ const ExpiryOpts: ExpiryOptsT[] = [
   { name: "28 days", time: 28 * 24 * 60 * 60 * 1000 },
 ];
 
-const format = (value: ExpiryOptsT, _type: unknown, _meta: unknown) => {
+const format = (value: ExpiryOptsT) => {
   return value.name;
 };
 

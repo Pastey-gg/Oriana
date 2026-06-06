@@ -36,8 +36,7 @@ const onLangUpdate = (value: LangObj) => {
   setPasteStore("files", draftStore.currentFile, { language: value.name });
 };
 
-// biome-ignore lint/suspicious/noExplicitAny: ...
-const format = (value: LangObj, _type: any, _meta: any) => {
+const format = (value: LangObj) => {
   return (
     <div class="langIn">
       {<value.icon />}
