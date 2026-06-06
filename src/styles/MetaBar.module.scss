@@ -77,6 +77,8 @@
     }
 
     .fileSelect {
-        padding: 0.4em;
+        padding: 0;
+        min-width: 4rem;
+        justify-content: center;
     }
 }
