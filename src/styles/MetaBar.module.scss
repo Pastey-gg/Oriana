@@ -69,9 +69,11 @@
         & > input 
         {
             padding: 0.4em;
+            max-width: 8rem;
+            font-size: 0.75rem;
         }
         gap: .5em;
-        font-size: 0.8em;
+        font-size: 0.75rem;
     }
 
     .fileSelect {
