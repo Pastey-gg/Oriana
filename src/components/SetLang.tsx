@@ -21,7 +21,11 @@ const onNameUpdate: JSX.ChangeEventHandler<HTMLInputElement, Event> = (event) =>
   }
 
   const lang = findLangByExt(val);
-  setPasteStore("files", draftStore.currentFile, (prev) => ({ language: lang || prev.language, name: val }));
+  const filtered = val.replace(/[^a-zA-Z0-9_\-\.]/g, "");
+  inp.value = filtered;
+  console.log(filtered)
+
+  setPasteStore("files", draftStore.currentFile, (prev) => ({ language: lang || prev.language, name: filtered }));
 };
 
 const onLangUpdate = (value: LangObj) => {
