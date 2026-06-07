@@ -1,9 +1,8 @@
 import { A, useNavigate } from "@solidjs/router";
 import { createSignal, type ParentComponent } from "solid-js";
-import { setDraftStore, setPasteStore } from "~/stores";
+import { createDraftFile, setDraftStore, setPasteStore } from "~/stores";
 import FaSolidCog from "~/svgs/cog";
 import Logo from "~/svgs/Logo";
-import type { PasteFileCreate } from "~/types/files";
 import styles from "../styles/Topbar.module.scss";
 import SettingsModal from "./Settings";
 import ThemeToggle from "./ThemeToggle";
@@ -18,7 +17,7 @@ const NavBar: ParentComponent<Props> = (props) => {
 
   const goHome = () => {
     setPasteStore(() => ({
-      files: [{ content: "" } as PasteFileCreate],
+      files: [createDraftFile()],
       password: undefined,
       expiry: undefined,
       views: undefined,

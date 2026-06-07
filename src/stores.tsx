@@ -2,8 +2,10 @@ import { makePersisted } from "@solid-primitives/storage";
 import { createStore } from "solid-js/store";
 import type { DraftStore, MetaStore, PasteStore } from "./types/stores";
 
+export const createDraftFile = () => ({ content: "", language: "auto" });
+
 export const [pasteStore, setPasteStore] = createStore<PasteStore>({
-  files: [{ content: "", language: "auto"}],
+  files: [createDraftFile()],
 });
 
 export const [draftStore, setDraftStore] = createStore<DraftStore>({

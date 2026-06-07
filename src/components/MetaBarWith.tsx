@@ -4,7 +4,7 @@ import ChevronSVG from "~/svgs/Chevron";
 import type { PasteResponse } from "~/types/pastes";
 import styles from "../styles/MetaBar.module.scss";
 import FileSelector from "./FileSelector";
-import { loadLangs, resolveLang } from "./SetLang";
+import { loadLangs, resolveLangName } from "./SetLang";
 
 interface Props {
   paste: PasteResponse;
@@ -38,7 +38,7 @@ const MetaBarWith: Component<Props> = (props) => {
             name="fileLanguage"
             class={`${styles.langSelect} customSelect`}
             {...loadLangs}
-            initialValue={resolveLang(props.selectedLanguage)}
+            initialValue={resolveLangName(props.selectedLanguage)}
             onChange={(value) => value && props.onLanguageChange(value.name)}
           />
         </Show>

@@ -100,8 +100,8 @@ const IEditor: Component<Props> = (props) => {
   const draftFile = createMemo(() => pasteStore.files[draftStore.currentFile]);
   const draftEditorKey = createMemo(() => `draft-file-${draftStore.currentFile}`);
   const viewedFile = createMemo(() => props.paste?.files[viewFile()]);
-  const viewedLanguage = createMemo(() => viewLanguageOverrides()[viewFile()] ?? viewedFile()?.language ?? "text");
-  const viewerEditorKey = createMemo(() => `viewer-${props.paste?.id ?? "loading"}-${viewFile()}`);
+  const viewedLanguage = createMemo(() => viewLanguageOverrides()[viewFile()] ?? findLang(viewedFile()!).name);
+  const viewerEditorKey = createMemo(() => `viewer-${props.paste?.id ?? "loading"}-${viewFile()}-${viewedLanguage()}`);
   const isViewingPaste = createMemo(() => props.loadingPaste || Boolean(props.paste));
 
   const draftInitialValue = () => untrack(() => pasteStore.files[draftStore.currentFile]?.content ?? "");
@@ -142,7 +142,7 @@ const IEditor: Component<Props> = (props) => {
           <Show keyed={true} when={viewerEditorKey()}>
             <CodeEditor
               extensions={extensions()}
-              language={findLang(viewedFile()!).name}
+              language={viewedLanguage()}
               readOnly={true}
               value={viewedFile()?.content ?? ""}
               id="paste-content-viewer"
@@ -155,7 +155,7 @@ const IEditor: Component<Props> = (props) => {
           <Show keyed={true} when={draftEditorKey()}>
             <CodeEditor
               extensions={extensions()}
-              language={draftFile()?.language ?? "text"}
+              language={findLang(draftFile()!).name}
               value={draftInitialValue()}
               onUpdate={setCurrentFileContent}
               id="paste-content-editor"

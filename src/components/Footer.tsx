@@ -1,11 +1,10 @@
 import { useNavigate } from "@solidjs/router";
 import type { ParentComponent } from "solid-js";
-import { setDraftStore, setPasteStore } from "~/stores";
+import { createDraftFile, setDraftStore, setPasteStore } from "~/stores";
 import FaBrandsDiscord from "~/svgs/Discord";
 import FaBrandsGithub from "~/svgs/GitHub";
 import Logo from "~/svgs/Logo";
 import VsVscode from "~/svgs/VSC";
-import type { PasteFileCreate } from "~/types/files";
 import styles from "../styles/FooterBar.module.scss";
 
 const FooterBar: ParentComponent = () => {
@@ -13,7 +12,7 @@ const FooterBar: ParentComponent = () => {
 
   const goHome = () => {
     setPasteStore(() => ({
-      files: [{ content: "" } as PasteFileCreate],
+      files: [createDraftFile()],
       password: undefined,
       expiry: undefined,
       views: undefined,

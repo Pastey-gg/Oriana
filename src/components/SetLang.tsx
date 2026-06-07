@@ -1,24 +1,22 @@
 import { createOptions } from "@thisbeyond/solid-select";
-import hljs from "highlight.js/lib/core"; 
-import clang from "highlight.js/lib/languages/c"
-import cpp from "highlight.js/lib/languages/cpp"
-import csharp from "highlight.js/lib/languages/csharp"
+import hljs from "highlight.js/lib/core";
+import clang from "highlight.js/lib/languages/c";
+import cpp from "highlight.js/lib/languages/cpp";
+import csharp from "highlight.js/lib/languages/csharp";
 import css from "highlight.js/lib/languages/css";
-import golang from "highlight.js/lib/languages/go"
-import java from "highlight.js/lib/languages/java"
+import golang from "highlight.js/lib/languages/go";
+import java from "highlight.js/lib/languages/java";
 import javascript from "highlight.js/lib/languages/javascript";
-import jsonlang from "highlight.js/lib/languages/json"
-import markdown from "highlight.js/lib/languages/markdown"
+import jsonlang from "highlight.js/lib/languages/json";
+import markdown from "highlight.js/lib/languages/markdown";
 import python from "highlight.js/lib/languages/python";
-import rust from "highlight.js/lib/languages/rust"
-import swift from "highlight.js/lib/languages/swift"
+import rust from "highlight.js/lib/languages/rust";
+import swift from "highlight.js/lib/languages/swift";
 import typescript from "highlight.js/lib/languages/typescript";
-import xml from "highlight.js/lib/languages/xml"
-
+import xml from "highlight.js/lib/languages/xml";
 import type { JSX } from "solid-js";
 import { draftStore, pasteStore, setPasteStore } from "~/stores";
 import FaSolidWandMagicSparkles from "~/svgs/langs/magic";
-import TextIcon from "~/svgs/langs/text";
 import type { PasteFileCreate, PasteFileResponse } from "~/types/files";
 import { EXTS, LANGS, type LangObj } from "~/utils";
 
@@ -54,9 +52,8 @@ const onNameUpdate: JSX.ChangeEventHandler<HTMLInputElement, Event> = (event) =>
   }
 
   const lang = findLangByExt(val);
-  const filtered = val.replace(/[^a-zA-Z0-9_\-\.]/g, "");
+  const filtered = val.replace(/[^a-zA-Z0-9_.-]/g, "");
   inp.value = filtered;
-  console.log(filtered)
 
   setPasteStore("files", draftStore.currentFile, (prev) => ({ language: lang || prev.language, name: filtered }));
 };
@@ -84,30 +81,40 @@ const format = (value: LangObj) => {
 
 const loadLangs = createOptions(LANGS, { format, extractText: (value: LangObj) => value.name });
 
+const autoLang = (): LangObj => ({ name: "auto", icon: FaSolidWandMagicSparkles });
+
+const resolveLangName = (name: string): LangObj => LANGS.find((lang) => lang.name === name) ?? autoLang();
+
 const resolveLang = (file: PasteFileCreate | PasteFileResponse): LangObj => {
   if (!file) {
-    return { name: "text", icon: TextIcon }
+    return autoLang();
   }
 
-  const name = file.language || "text";
+  const name = file.language || "auto";
   let lang = LANGS.find((l) => l.name === name);
 
-  if (lang !== undefined && lang.name !== "auto") {
+  if (lang !== undefined && lang.name !== "auto" && lang.name !== "text") {
     return lang;
   }
 
-  lang = LANGS.find((l) => l.name === findLangByExt(name));
-  if (lang && lang.name !== "auto") {
-    return lang;
+  if (file.name) {
+    lang = LANGS.find((l) => l.name === findLangByExt(file.name!));
+    if (lang && lang.name !== "auto") {
+      return lang;
+    }
   }
 
-  if (file.content.length >= 10) {
+  if ((name === "auto" || name === "text") && file.content.length >= 10) {
     const auto = hljs.highlightAuto(file.content);
-    lang = LANGS.find((l) => l.name === (auto.language)); 
+    lang = LANGS.find((l) => l.name === auto.language);
+    if (lang) {
+      return lang;
+    }
   }
-  return lang || { name: "text", icon: FaSolidWandMagicSparkles };
+
+  return lang || autoLang();
 };
 
 const findLang = (file: PasteFileResponse | PasteFileCreate): LangObj => resolveLang(file);
 
-export { findLang, findLangByExt, format, loadLangs, onLangUpdate, onNameUpdate, resolveLang };
+export { findLang, findLangByExt, format, loadLangs, onLangUpdate, onNameUpdate, resolveLang, resolveLangName };
