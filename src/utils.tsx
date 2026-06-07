@@ -31,6 +31,7 @@ import SiToml from "./svgs/langs/toml";
 import SiWebassembly from "./svgs/langs/wasm";
 import BsFiletypeXml from "./svgs/langs/xml";
 import SiYaml from "./svgs/langs/yaml";
+import FaSolidWandMagicSparkles from "./svgs/langs/magic";
 export interface LangObj {
   name: string;
   // biome-ignore lint/suspicious/noExplicitAny: ...
@@ -77,6 +78,7 @@ export const LANGS: LangObj[] = [
   { name: "toml", icon: SiToml },
   { name: "kotlin", icon: SiKotlin },
   { name: "text", icon: TextIcon },
+  { name: "auto", icon: FaSolidWandMagicSparkles}
 ];
 LANGS.sort((a, b) => a.name.localeCompare(b.name));
 

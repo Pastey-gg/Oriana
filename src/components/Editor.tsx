@@ -14,6 +14,7 @@ import CodeEditor from "./editor/CodeEditor";
 import "./editor/languages";
 import MetaBar from "./MetaBar";
 import MetaBarWith from "./MetaBarWith";
+import { findLang } from "./SetLang";
 
 interface Props {
   paste?: PasteResponse;
@@ -113,20 +114,6 @@ const IEditor: Component<Props> = (props) => {
     setViewLanguageOverrides((current) => ({ ...current, [viewFile()]: language }));
   };
 
-  // const focusEditor = (event: MouseEvent) => {
-  //   const editor = document.querySelector<HTMLElement>(".pce-textarea");
-
-  //   if (!editor) {
-  //     return;
-  //   }
-
-  //   if (event.target !== event.currentTarget) {
-  //     return;
-  //   }
-
-  //   editor.focus();
-  // };
-
   return (
     <div class={editorStyles.container} tabIndex={-1} id="editorDiv">
       <EditorThemeLoader />
@@ -155,7 +142,7 @@ const IEditor: Component<Props> = (props) => {
           <Show keyed={true} when={viewerEditorKey()}>
             <CodeEditor
               extensions={extensions()}
-              language={viewedLanguage()}
+              language={findLang(viewedFile()!).name}
               readOnly={true}
               value={viewedFile()?.content ?? ""}
               id="paste-content-viewer"

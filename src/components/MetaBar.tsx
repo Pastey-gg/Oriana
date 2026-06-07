@@ -33,7 +33,7 @@ const MetaBar: Component = () => {
           placeholder="Syntax..."
           {...loadLangs}
           onChange={onLangUpdate}
-          initialValue={findLang()}
+          initialValue={findLang(pasteStore.files[draftStore.currentFile])}
         />
         <span class={styles.fileSelectorChevron}>
           <ChevronSVG />
