@@ -229,9 +229,10 @@ input:focus {
     z-index: 9;
     height: 2.6em;
     align-items: center;
-    border: none;
+    border: 1px solid var(--secondary-color--10);
+    border-radius: .2em;
     &:focus-within {
-      outline: none;
+      outline: 1px solid var(--secondary-color--30);
     }
 
     &:hover {
