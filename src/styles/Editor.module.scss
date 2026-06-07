@@ -6,7 +6,7 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .container {
+  :global([data-theme-ready="true"]) .container {
     transition:
       background-color 250ms ease,
       border-color 250ms ease;

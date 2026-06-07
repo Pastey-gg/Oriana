@@ -54,20 +54,20 @@ hr {
     transition: none!important;
   }
 
-  body {
+  [data-theme-ready="true"] body {
     transition:
       color 250ms ease,
       background-color 250ms ease;
   }
 
-  input,
-  hr,
-  .toasty,
-  .saveButton,
-  .reportButton,
-  .customSelect.solid-select-container,
-  .customSelect .solid-select-control,
-  .customSelect .solid-select-option {
+  [data-theme-ready="true"] input,
+  [data-theme-ready="true"] hr,
+  [data-theme-ready="true"] .toasty,
+  [data-theme-ready="true"] .saveButton,
+  [data-theme-ready="true"] .reportButton,
+  [data-theme-ready="true"] .customSelect.solid-select-container,
+  [data-theme-ready="true"] .customSelect .solid-select-control,
+  [data-theme-ready="true"] .customSelect .solid-select-option {
     transition:
       background-color 250ms ease,
       border-color 250ms ease,
@@ -75,13 +75,13 @@ hr {
       box-shadow 250ms ease;
   }
 
-  .prism-code-editor {
+  [data-theme-ready="true"] .prism-code-editor {
     transition:
       opacity 125ms ease,
       background-color 250ms ease;
   }
 
-  [data-editor-theme-transition="true"] .prism-code-editor {
+  [data-theme-ready="true"][data-editor-theme-transition="true"] .prism-code-editor {
     opacity: .74;
   }
 

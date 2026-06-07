@@ -2,7 +2,7 @@ import "virtual:uno.css";
 import "@thisbeyond/solid-select/style.css";
 
 import { Route, Router } from "@solidjs/router";
-import { Suspense } from "solid-js";
+import { onMount, Suspense } from "solid-js";
 import "./styles/root.scss";
 import "./styles/app.scss";
 import { Toaster } from "solid-toast";
@@ -15,6 +15,12 @@ import PrivacyPage from "./routes/privacy";
 import TermsPage from "./routes/terms";
 
 export default function App() {
+  onMount(() => {
+    requestAnimationFrame(() => {
+      document.documentElement.dataset.themeReady = "true";
+    });
+  });
+
   return (
     <Router
       root={(props) => (
