@@ -8,6 +8,18 @@
     <link rel="icon" href="/favicon.ico" />
     <link rel="preload" href="/geist-v5-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href="/inter-v20-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <script>
+      const themePreference = localStorage.getItem("theme") || "system";
+      let theme = themePreference;
+
+      if (themePreference === "system") {
+        theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+
+      document.documentElement.setAttribute("data-theme", theme);
+      document.documentElement.setAttribute("data-theme-preference", themePreference);
+      document.documentElement.style.colorScheme = theme;
+    </script>
     <style>
       :root,
       [data-theme="light"] {
@@ -33,18 +45,6 @@
         background: var(--shell-primary-bg);
       }
     </style>
-    <script>
-      const themePreference = localStorage.getItem("theme") || "system";
-      let theme = themePreference;
-
-      if (themePreference === "system") {
-        theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-      }
-
-      document.documentElement.setAttribute("data-theme", theme);
-      document.documentElement.setAttribute("data-theme-preference", themePreference);
-      document.documentElement.style.colorScheme = theme;
-    </script>
   </head>
   <body>
     <div id="app"></div>
