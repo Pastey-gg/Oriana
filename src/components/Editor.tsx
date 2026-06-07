@@ -33,19 +33,56 @@ const EditorThemeLoader: Component = () => {
     const style = document.createElement("style");
     style.dataset.prismEditorTheme = "";
     document.head.append(style);
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: no-preference)");
+    let hasAppliedTheme = false;
+    let appliedTheme: Theme | undefined;
+    let transitionTimeout: number | undefined;
+
+    const startTransition = () => {
+      if (!hasAppliedTheme || !motionQuery.matches) return;
+      window.clearTimeout(transitionTimeout);
+      document.documentElement.dataset.editorThemeTransition = "true";
+    };
+
+    const finishTransition = () => {
+      if (!hasAppliedTheme || !motionQuery.matches) return;
+      transitionTimeout = window.setTimeout(() => {
+        delete document.documentElement.dataset.editorThemeTransition;
+      }, 125);
+    };
+
+    const applyEditorTheme = async (nextTheme: Theme, useFallbackTransition = true) => {
+      if (appliedTheme === nextTheme) return;
+
+      if (useFallbackTransition) startTransition();
+      const themeCss = await loadTheme(editorTheme(nextTheme));
+      if (themeCss) style.textContent = themeCss;
+      appliedTheme = nextTheme;
+      hasAppliedTheme = true;
+
+      if (useFallbackTransition) {
+        requestAnimationFrame(finishTransition);
+      } else {
+        delete document.documentElement.dataset.editorThemeTransition;
+      }
+    };
+
+    window.orianaApplyEditorTheme = (theme) => applyEditorTheme(theme, false);
 
     const applyTheme = () => {
-      loadTheme(editorTheme(getTheme())).then((themeCss) => {
-        if (themeCss) style.textContent = themeCss;
-      });
+      void applyEditorTheme(getTheme());
     };
 
     const observer = new MutationObserver(applyTheme);
 
     applyTheme();
+    void loadTheme(editorTheme(getTheme() === "dark" ? "light" : "dark"));
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 
     onCleanup(() => {
+      window.clearTimeout(transitionTimeout);
+      delete document.documentElement.dataset.editorThemeTransition;
+      window.orianaApplyEditorTheme = undefined;
       observer.disconnect();
       style.remove();
     });

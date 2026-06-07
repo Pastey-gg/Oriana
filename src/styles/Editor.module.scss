@@ -4,3 +4,11 @@
   border-radius: 0.3em;
   background-color: var(--editor-bg);
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  .container {
+    transition:
+      background-color 250ms ease,
+      border-color 250ms ease;
+  }
+}

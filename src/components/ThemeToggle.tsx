@@ -10,6 +10,12 @@ type ThemeOption = {
   icon: "sun" | "moon" | "monitor";
 };
 
+type ViewTransitionDocument = Document & {
+  startViewTransition?: (updateCallback: () => void | Promise<void>) => {
+    finished: Promise<void>;
+  };
+};
+
 const getSystemTheme = (): Theme => (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
 
 const getPreference = (): ThemePreference => {
@@ -19,15 +25,48 @@ const getPreference = (): ThemePreference => {
 
 const resolveTheme = (preference: ThemePreference): Theme => (preference === "system" ? getSystemTheme() : preference);
 
-const applyTheme = (theme: Theme) => {
-  document.documentElement.setAttribute("data-theme", theme);
-  document.documentElement.style.colorScheme = theme;
+const prefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const applyTheme = async (theme: Theme) => {
+  await window.orianaApplyEditorTheme?.(theme);
+
+  if (document.documentElement.getAttribute("data-theme") !== theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+  }
+
+  if (document.documentElement.style.colorScheme !== theme) {
+    document.documentElement.style.colorScheme = theme;
+  }
+};
+
+const writeThemeState = async (preference: ThemePreference) => {
+  await applyTheme(resolveTheme(preference));
+
+  if (document.documentElement.dataset.themePreference !== preference) {
+    document.documentElement.dataset.themePreference = preference;
+  }
+
+  if (localStorage.getItem("theme") !== preference) {
+    localStorage.setItem("theme", preference);
+  }
 };
 
 const setTheme = (preference: ThemePreference) => {
-  applyTheme(resolveTheme(preference));
-  document.documentElement.dataset.themePreference = preference;
-  localStorage.setItem("theme", preference);
+  const theme = resolveTheme(preference);
+  const themeChanged = document.documentElement.getAttribute("data-theme") !== theme;
+
+  const viewTransitionDocument = document as ViewTransitionDocument;
+
+  if (!themeChanged || prefersReducedMotion() || !viewTransitionDocument.startViewTransition) {
+    void writeThemeState(preference);
+    return;
+  }
+
+  document.documentElement.dataset.themeTransition = "view";
+  const transition = viewTransitionDocument.startViewTransition(() => writeThemeState(preference));
+  transition.finished.finally(() => {
+    delete document.documentElement.dataset.themeTransition;
+  });
 };
 
 const options: ThemeOption[] = [
@@ -113,7 +152,7 @@ export default function ThemeToggle() {
 
     const onSystemThemeChange = () => {
       if (getPreference() !== "system") return;
-      applyTheme(getSystemTheme());
+      setTheme("system");
     };
 
     const onStorage = (event: StorageEvent) => {
