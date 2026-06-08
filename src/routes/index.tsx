@@ -1,4 +1,5 @@
 import { onMount } from "solid-js";
+import toast from "solid-toast";
 import FooterBar from "~/components/Footer";
 import MetaInfo from "~/components/MetaInfo";
 import { createDraftFile, pasteStore, setDraftStore, setPasteStore } from "~/stores";
@@ -9,6 +10,7 @@ export default function Home() {
   onMount(() => setDraftStore("currentFile", 0));
   const addFile = () => {
     if (pasteStore.files.length >= 5) {
+      toast.error("Max files reached: 5");
       return;
     }
 
@@ -16,6 +18,7 @@ export default function Home() {
 
     setPasteStore("files", (currentFiles) => [...currentFiles, createDraftFile()]);
     setDraftStore("currentFile", nextFileIndex);
+    toast.success("Successfully added a new file.")
   };
 
   return (
