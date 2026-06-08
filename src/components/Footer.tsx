@@ -1,5 +1,5 @@
 import { useNavigate } from "@solidjs/router";
-import type { ParentComponent } from "solid-js";
+import { createResource, type ParentComponent } from "solid-js";
 import { createDraftFile, setDraftStore, setPasteStore } from "~/stores";
 import FaBrandsDiscord from "~/svgs/Discord";
 import FaBrandsGithub from "~/svgs/GitHub";
@@ -7,8 +7,31 @@ import Logo from "~/svgs/Logo";
 import VsVscode from "~/svgs/VSC";
 import styles from "../styles/FooterBar.module.scss";
 
+interface VersionInfo {
+  version: string;
+  commit: string;
+  commit_time: string;
+}
 const FooterBar: ParentComponent = () => {
   const navigate = useNavigate();
+
+  const [version] = createResource<VersionInfo>(async () => {
+    let resp: Response;
+
+    try {
+      resp = await fetch(`${import.meta.env.VITE_API_HOST}/version/info`);
+    } catch (error) {
+      console.error(error);
+      return;
+    }
+
+    if (resp.status >= 300) {
+      console.error(`Status: ${resp.status} while fetching version info...`);
+      return;
+    }
+
+    return await resp.json();
+  });
 
   const goHome = () => {
     setPasteStore(() => ({
@@ -38,7 +61,8 @@ const FooterBar: ParentComponent = () => {
             </span>
             <span>pastey.gg</span>
           </a>
-          0.1.0a
+          <span>{version()?.version}</span>
+          <span>{version()?.commit}</span>
         </div>
         <div class={`${styles.col} ${styles.colc}`}>
           <b class={styles.header}>Links</b>

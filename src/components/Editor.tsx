@@ -113,9 +113,9 @@ const IEditor: Component<Props> = (props) => {
   const setViewedLanguage = (language: string) => {
     let name = language;
     if (language === "auto") {
-      name = findLang(viewedFile()!).name ?? language
+      name = findLang(viewedFile()!).name ?? language;
     }
-    
+
     setViewLanguageOverrides((current) => ({ ...current, [viewFile()]: name }));
   };
 

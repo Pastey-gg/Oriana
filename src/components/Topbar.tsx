@@ -41,7 +41,7 @@ const NavBar: ParentComponent<Props> = (props) => {
           <span class="logo">
             <Logo />
           </span>
-          <span style={{"font-family": '"SourceCodePro", monospace'}}>pastey.gg</span>
+          <span style={{ "font-family": '"SourceCodePro", monospace' }}>pastey.gg</span>
         </A>
         <div class={styles.controls}>
           <ThemeToggle />

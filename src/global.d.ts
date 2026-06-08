@@ -3,4 +3,3 @@
 interface Window {
   orianaApplyEditorTheme?: (theme: "light" | "dark") => Promise<void>;
 }
-

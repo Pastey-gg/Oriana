@@ -78,7 +78,7 @@ export const LANGS: LangObj[] = [
   { name: "toml", icon: SiToml },
   { name: "kotlin", icon: SiKotlin },
   { name: "text", icon: TextIcon },
-  { name: "auto", icon: FaSolidWandMagicSparkles}
+  { name: "auto", icon: FaSolidWandMagicSparkles },
 ];
 LANGS.sort((a, b) => a.name.localeCompare(b.name));
 
