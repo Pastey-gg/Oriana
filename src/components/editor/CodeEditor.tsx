@@ -1,4 +1,4 @@
-import { type Component, createMemo } from "solid-js";
+import { type Component, createMemo, Match, Switch } from "solid-js";
 import { Editor, type Extension, type PrismEditor } from "solid-prism-editor";
 import { defaultCommands } from "solid-prism-editor/commands";
 import { metaStore } from "~/stores";
@@ -15,6 +15,8 @@ interface Props {
 }
 
 const CodeEditor: Component<Props> = (props) => {
+  const { value } = props;
+
   const effectiveExtensions = createMemo(() => {
     if (props.readOnly) return props.extensions;
     return [defaultCommands(), ...props.extensions];
@@ -45,7 +47,7 @@ const CodeEditor: Component<Props> = (props) => {
       extensions={effectiveExtensions()}
       language={props.language}
       readOnly={props.readOnly}
-      value={props.value}
+      value={value}
       onUpdate={props.onUpdate}
       onMount={setFieldAttrs}
       class={`font-${metaStore.font ?? "monospace"} fontSize-${metaStore.fontSize ?? "default"}${metaStore.ligatures ? " ligs" : ""}`}
