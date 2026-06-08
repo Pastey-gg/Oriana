@@ -1,5 +1,5 @@
 import { useNavigate } from "@solidjs/router";
-import { createResource, type ParentComponent } from "solid-js";
+import { createMemo, createResource, type ParentComponent } from "solid-js";
 import { createDraftFile, setDraftStore, setPasteStore } from "~/stores";
 import FaBrandsDiscord from "~/svgs/Discord";
 import FaBrandsGithub from "~/svgs/GitHub";
@@ -33,6 +33,8 @@ const FooterBar: ParentComponent = () => {
     return await resp.json();
   });
 
+  const VersionInfo = createMemo(() => version());
+
   const goHome = () => {
     setPasteStore(() => ({
       files: [createDraftFile()],
@@ -61,8 +63,8 @@ const FooterBar: ParentComponent = () => {
             </span>
             <span>pastey.gg</span>
           </a>
-          <span>{version()?.version}</span>
-          <span>{version()?.commit}</span>
+          <span>{VersionInfo()?.version}</span>
+          <span>{VersionInfo()?.commit}</span>
         </div>
         <div class={`${styles.col} ${styles.colc}`}>
           <b class={styles.header}>Links</b>
