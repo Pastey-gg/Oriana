@@ -18,7 +18,7 @@ export default function Home() {
 
     setPasteStore("files", (currentFiles) => [...currentFiles, createDraftFile()]);
     setDraftStore("currentFile", nextFileIndex);
-    toast.success("Successfully added a new file.")
+    toast.success("Successfully added a new file.");
   };
 
   return (

@@ -1,5 +1,6 @@
 const BashIcon = (props) => (
   <svg viewBox="0 0 128 128" {...props}>
+    <title>Icon</title>
     <path fill="none" d="M4.24 4.24h119.53v119.53H4.24z" />
     <path
       fill="currentColor"

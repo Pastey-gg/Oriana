@@ -12,10 +12,29 @@ interface VersionInfo {
   commit: string;
   commit_time: string;
 }
+
+const getBuildVersionInfo = (): VersionInfo | undefined => {
+  const version = import.meta.env.VITE_PASTEY_VERSION;
+  const commit = import.meta.env.VITE_ORIANA_COMMIT;
+  const commitTime = import.meta.env.VITE_ORIANA_COMMIT_TIME;
+  if (!version && !commit && !commitTime) {
+    return;
+  }
+
+  return {
+    version: version ?? "",
+    commit: commit ?? "",
+    commit_time: commitTime ?? "",
+  };
+};
+
+const shortCommit = (commit?: string) => commit?.slice(0, 7);
+
 const FooterBar: ParentComponent = () => {
   const navigate = useNavigate();
+  const buildVersionInfo = getBuildVersionInfo();
 
-  const [version] = createResource<VersionInfo>(async () => {
+  const [echoVersion] = createResource<VersionInfo>(async () => {
     let resp: Response;
 
     try {
@@ -33,7 +52,8 @@ const FooterBar: ParentComponent = () => {
     return await resp.json();
   });
 
-  const VersionInfo = createMemo(() => version());
+  const orianaCommit = createMemo(() => shortCommit(buildVersionInfo?.commit));
+  const echoCommit = createMemo(() => shortCommit(echoVersion()?.commit));
 
   const goHome = () => {
     setPasteStore(() => ({
@@ -63,8 +83,9 @@ const FooterBar: ParentComponent = () => {
             </span>
             <span>pastey.gg</span>
           </a>
-          <span>{VersionInfo()?.version}</span>
-          <span>{VersionInfo()?.commit}</span>
+          <span>Pastey v{buildVersionInfo?.version}</span>
+          <span>Oriana: {orianaCommit()}</span>
+          <span>Echo: {echoCommit()}</span>
         </div>
         <div class={`${styles.col} ${styles.colc}`}>
           <b class={styles.header}>Links</b>

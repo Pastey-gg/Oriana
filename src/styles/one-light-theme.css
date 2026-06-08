@@ -204,6 +204,7 @@ pre[class*="language-"] {
   color: hsl(119, 34%, 47%);
 }
 
+.token.atrule .token.rule,
 .language-css .token.important,
 .language-css .token.atrule .token.rule {
   color: hsl(301, 63%, 40%);
@@ -359,7 +360,6 @@ pre[class*="language-"],
 }
 
 .language-css .token.important,
-.token.atrule .token.rule,
 .language-markdown .italic,
 .language-markdown .url > .url,
 .token.url.url-reference {

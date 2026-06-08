@@ -11,6 +11,7 @@ const TextIcon = (props) => (
     className="lucide lucide-text"
     {...props}
   >
+    <title>Icon</title>
     <path d="M17 6.1H3M21 12.1H3M15.1 18H3" />
   </svg>
 );

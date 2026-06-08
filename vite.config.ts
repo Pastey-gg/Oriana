@@ -1,7 +1,7 @@
 import path from "node:path";
+import UnoCSS from "unocss/vite";
 import { defineConfig, type Plugin } from "vite";
 import solid from "vite-plugin-solid";
-import UnoCSS from "unocss/vite";
 
 const isSolidPrismEditorModule = (id: string) => id.includes("/solid-prism-editor/dist/");
 

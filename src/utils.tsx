@@ -1,4 +1,3 @@
-import { A } from "@solidjs/router";
 import BashIcon from "~/svgs/langs/bash";
 import CIcon from "~/svgs/langs/c";
 import CPPIcon from "~/svgs/langs/cpp";
@@ -19,6 +18,7 @@ import VsJson from "./svgs/langs/json";
 import SiKotlin from "./svgs/langs/kotlin";
 import SiLess from "./svgs/langs/less";
 import SiLua from "./svgs/langs/lua";
+import FaSolidWandMagicSparkles from "./svgs/langs/magic";
 import SiMarkdown from "./svgs/langs/markdown";
 import SiPerl from "./svgs/langs/perl";
 import SiPhp from "./svgs/langs/php";
@@ -31,7 +31,6 @@ import SiToml from "./svgs/langs/toml";
 import SiWebassembly from "./svgs/langs/wasm";
 import BsFiletypeXml from "./svgs/langs/xml";
 import SiYaml from "./svgs/langs/yaml";
-import FaSolidWandMagicSparkles from "./svgs/langs/magic";
 export interface LangObj {
   name: string;
   // biome-ignore lint/suspicious/noExplicitAny: ...
