@@ -45,7 +45,7 @@ const CodeEditor: Component<Props> = (props) => {
       extensions={effectiveExtensions()}
       language={props.language}
       readOnly={props.readOnly}
-      value={props.readOnly ? props.value : ""}
+      value={props.value}
       onUpdate={props.onUpdate}
       onMount={setFieldAttrs}
       class={`font-${metaStore.font ?? "monospace"} fontSize-${metaStore.fontSize ?? "default"}${metaStore.ligatures ? " ligs" : ""}`}
