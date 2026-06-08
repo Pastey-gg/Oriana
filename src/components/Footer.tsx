@@ -83,7 +83,7 @@ const FooterBar: ParentComponent = () => {
             </span>
             <span>pastey.gg</span>
           </a>
-          <span>Pastey v{buildVersionInfo?.version}</span>
+          <span>v{buildVersionInfo?.version}</span>
           <span>Oriana: {orianaCommit()}</span>
           <span>Echo: {echoCommit()}</span>
         </div>
